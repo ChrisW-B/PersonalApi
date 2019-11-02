@@ -1,3 +1,3 @@
-import relTime from './relTime';
+import relTime from './relativeTimeDifference';
 
 export default { relTime };

@@ -7,8 +7,8 @@
   "lastfm": "https://last.fm/user/christo27",
   "blog": "https://photo.chriswbarry.com/",
   "employed": true,
-  "bio": "I'm a web developer from NYC, focusing on Node, Javascript and React. I love learning the newest technologies to create great web experiences. I'm currently at [Great Jones](//greatjones.co) Previously, I worked at **Kip**, where I worked on a Slack bot and later worked in a team creating an entirely new frontend in React.",
-  "interests": "I love working in frontend, especially React and CSS. Right now I'm working with Typescript with React and styling in JS with Material-UI",
+  "bio": "I'm a web developer from NYC, focusing on React, JavaScript/TypeScript, and NodeJS. I love learning the newest technologies to create great web experiences. I'm currently at [Great Jones](//greatjones.co) Previously, I worked at **Kip**, where I worked on a Slack bot and later worked in a team creating an entirely new frontend in React.",
+  "interests": "I love working in frontend, especially React and CSS. Right now I'm working with Typescript with React and styling in JS with Styled-Components",
   "resume": {
     "pdf": "https://chriswbarry.com/files/ChrisBarry_Resume.pdf",
     "docx": "https://chriswbarry.com/files/ChrisBarry_Resume.docx"
@@ -17,7 +17,18 @@
     {
       "name": "Spotify Autoplaylists",
       "description": "A website that will create and update playlists for your most played and recently added music",
-      "technologies": ["JavaScript", "React", "Redux", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS", "Express", "GraphQL", "Mongoose"],
+      "technologies": [
+        "JavaScript",
+        "React",
+        "Redux",
+        "CSS in JS/Emotion",
+        "SCSS",
+        "Webpack",
+        "NodeJS",
+        "Express",
+        "GraphQL",
+        "Mongoose"
+      ],
       "github": "https://github.com/ChrisW-B/spotifyPlaylists",
       "website": "https://spotifyapps.chriswbarry.com/"
     },
@@ -45,7 +56,16 @@
     {
       "name": "This Site!",
       "description": "Just a personal landing page. Check out [chrisb.me/graphql](https://chrisb.me/graphql) or try `curl chrisb.me` for some fun!",
-      "technologies": ["React", "Isomorphic React", "GraphQL", "Express", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS"],
+      "technologies": [
+        "React",
+        "Isomorphic React",
+        "GraphQL",
+        "Express",
+        "CSS in JS/Emotion",
+        "SCSS",
+        "Webpack",
+        "NodeJS"
+      ],
       "github": "https://github.com/ChrisW-B/personalWebsite",
       "website": "https://chriswbarry.com/"
     }
@@ -58,7 +78,13 @@
         "start": "December 2017",
         "end": "-"
       },
-      "details": ["Worked in a team to create a new frontend for a portal in Typescript with React"]
+      "details": [
+        "Worked in a team to create a new frontend for a owner portal in React and TypeScript",
+        "Managed multiple frontends, including a NextJS Marketing homepage, an Owner Portal, an Administration Portal",
+        "Oversaw creation and development of a brand new onboarding form, with complex states",
+        "Worked with a GraphQL backend, styling with a combination of Material UI and Styled Components",
+        "Restructured large projects to use modern technologies like React Hooks"
+      ]
     },
     {
       "company": "Kip",
@@ -116,11 +142,20 @@
   "skills": [
     {
       "category": "Programming",
-      "types": ["JavaScript", "MongoDB", "Node", "HTML5", "CSS3", "C/C++", "C#", "Python", "MATLAB/Octave"]
+      "types": ["JavaScript", "MongoDB", "Node", "HTML5", "CSS3", "C/C++", "C#", "Python"]
     },
     {
       "category": "Libraries",
-      "types": ["React", "Redux", "Mongoose", "Express", "Sass", "GraphQL", "jQuery", "Styled-Components/Emotion", "Webpack", "Typescript"]
+      "types": [
+        "React",
+        "Redux",
+        "Express",
+        "Sass",
+        "GraphQL",
+        "Styled Components/Emotion",
+        "Webpack",
+        "TypeScript"
+      ]
     },
     {
       "category": "Visuals",

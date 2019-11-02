@@ -1,16 +1,11 @@
 {
-  "presets": [["@babel/env", { "targets": { "node": "current" } }], "@babel/react"],
-  "plugins": ["emotion", "@babel/plugin-proposal-class-properties"],
+  "presets": [["@babel/env", { "targets": { "node": "current" } }]],
+  "plugins": ["@babel/plugin-proposal-class-properties"],
   "env": {
     "production": {
-      "plugins": [["transform-react-remove-prop-types", { "mode": "remove", "removeImport": true }]],
-      "presets": [["@babel/env", { "targets": { "node": "current" }, "forceAllTransforms": true, "useBuiltIns": "usage" }], "@babel/react"]
+      "presets": [
+        ["@babel/env", { "targets": { "node": "current" }, "forceAllTransforms": true, "useBuiltIns": "usage" }]
+      ]
     }
-  },
-  "overrides": [
-    {
-      "test": "./client",
-      "presets": [["@babel/env", { "targets": { "browsers": ["> 5%"] } }]]
-    }
-  ]
+  }
 }

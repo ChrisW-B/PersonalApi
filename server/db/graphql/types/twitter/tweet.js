@@ -9,8 +9,8 @@ const Tweet = new GraphQLObjectType({
     message: { type: GraphQLString, description: `The Tweet Text` },
     time: { type: GraphQLString, description: `When the tweet was tweeted` },
     reltime: { type: GraphQLString, description: `When the tweet was tweeted, relatively` },
-    url: { type: GraphQLString, description: `The Tweet Permalink` }
-  })
+    url: { type: GraphQLString, description: `The Tweet Permalink` },
+  }),
 });
 
 export default Tweet;

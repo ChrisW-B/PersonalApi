@@ -10,8 +10,8 @@ const Commit = new GraphQLObjectType({
     name: { type: GraphQLString, description: `The Repository name with branch` },
     time: { type: GraphQLString, description: `When the commit occured` },
     reltime: { type: GraphQLString, description: `When the commit occured, relatively` },
-    message: { type: GraphQLString, description: `What the commit said` }
-  })
+    message: { type: GraphQLString, description: `What the commit said` },
+  }),
 });
 
 export default Commit;

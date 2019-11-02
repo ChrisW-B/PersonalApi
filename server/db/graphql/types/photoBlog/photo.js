@@ -9,8 +9,8 @@ const Photo = new GraphQLObjectType({
     title: { type: GraphQLString, description: `The Photo Title` },
     html: { type: GraphQLString, description: `The photo html` },
     photo: { type: GraphQLString, description: `The photo source` },
-    url: { type: GraphQLString, description: `a link to the post` }
-  })
+    url: { type: GraphQLString, description: `a link to the post` },
+  }),
 });
 
 export default Photo;

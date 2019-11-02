@@ -7,8 +7,8 @@ const Timespan = new GraphQLObjectType({
   description: `a timespan`,
   fields: () => ({
     start: { type: GraphQLString, description: `the start date` },
-    end: { type: GraphQLString, description: `the end date` }
-  })
+    end: { type: GraphQLString, description: `the end date` },
+  }),
 });
 
 export default Timespan;

@@ -1,10 +1,10 @@
-import job from './job';
 import github from './github';
-import project from './project';
-import skill from './skill';
-import resume from './resume';
+import job from './job';
 import lastfm from './lastfm';
-import twitter from './twitter';
 import photoBlog from './photoBlog';
+import project from './project';
+import resume from './resume';
+import skill from './skill';
+import twitter from './twitter';
 
 export { job, github, project, skill, resume, lastfm, twitter, photoBlog };

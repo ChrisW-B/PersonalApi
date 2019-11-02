@@ -1,6 +1,7 @@
 // db/graphql/types/Job.js
 
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
+import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
+
 import Timespan from './timespan';
 
 const Job = new GraphQLObjectType({
@@ -10,8 +11,8 @@ const Job = new GraphQLObjectType({
     company: { type: GraphQLString, description: `The Company's Name` },
     title: { type: GraphQLString, description: `What My Title Was` },
     when: { type: Timespan, description: `When I had the job` },
-    details: { type: new GraphQLList(GraphQLString), description: `More About the Job` }
-  })
+    details: { type: new GraphQLList(GraphQLString), description: `More About the Job` },
+  }),
 });
 
 export default Job;

@@ -1,23 +1,32 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "airbnb", "plugin:react/recommended", "plugin:prettier/recommended"],
-  "rules": {
-    "strict": 0,
-    "react/jsx-filename-extension": [0],
-    "import/prefer-default-export": [1],
-    "no-console": [1],
-    "operator-linebreak": 0
-  },
-  "plugins": ["react"],
-  "env": {
-    "browser": true
-  },
+  "plugins": ["unicorn"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:unicorn/recommended"
+  ],
   "parserOptions": {
-    "ecmaVersion": 8,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "classes": true,
-      "jsx": true
-    }
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "env": {
+    "jest": true,
+    "es6": true,
+    "commonjs": true,
+    "node": true
+  },
+  "settings": { "react": { "version": "detect" } },
+  "rules": {
+    "no-console": ["warn"],
+    "no-duplicate-imports": "error",
+    "no-prototype-builtins": 0,
+    "no-unused-expressions": "error",
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true, "argsIgnorePattern": "^_+" }],
+    "semi": ["warn", "always"],
+    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
+    "unicorn/filename-case": ["warn", { "case": "camelCase" }]
   }
 }

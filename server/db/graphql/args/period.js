@@ -11,7 +11,7 @@ export default {
       month: { value: `1month` },
       threeMonth: { value: `3month` },
       sixMonth: { value: `6month` },
-      year: { value: `12month` }
-    }
-  })
+      year: { value: `12month` },
+    },
+  }),
 };

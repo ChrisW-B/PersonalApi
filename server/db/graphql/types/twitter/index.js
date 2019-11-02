@@ -1,9 +1,10 @@
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
+import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import Twitter from 'twitter';
 import twitterText from 'twitter-text';
-import relTime from '../../utils/relTime';
-import tweet from './tweet';
+
 import { limit } from '../../args';
+import relTime from '../../utils';
+import tweet from './tweet';
 
 let twitterClient = null;
 // for some reason setting twitterClient on its own wasn't working so...
@@ -14,7 +15,7 @@ const getTwitterClient = () => {
       consumer_key: process.env.TWITTER_CONSUMER_KEY,
       consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
       access_token_key: process.env.TWITTER_ACCESS_KEY,
-      access_token_secret: process.env.TWITTER_ACCESS_SECRET
+      access_token_secret: process.env.TWITTER_ACCESS_SECRET,
     });
   }
   return twitterClient;
@@ -24,24 +25,21 @@ const convertToText = (text, urlEntities) => twitterText.autoLink(text, { urlEnt
 
 const getTweets = async max => {
   const twitter = getTwitterClient();
-  try {
-    const tweets = await twitter.get(`statuses/user_timeline`, {
-      screen_name: process.env.TWITTER_ID,
-      count: 200, // so we get enough without rts and mentions
-      exclude_replies: true,
-      include_rts: false
-    });
-    return tweets
-      .map(({ text, entities, created_at: time, id_str: id }) => ({
-        time,
-        message: convertToText(text, entities.urls),
-        reltime: relTime(new Date(time)),
-        url: `https://twitter.com/statuses/${id}`
-      }))
-      .slice(0, max);
-  } catch (e) {
-    throw e;
-  }
+
+  const tweets = await twitter.get(`statuses/user_timeline`, {
+    screen_name: process.env.TWITTER_ID,
+    count: 200, // so we get enough without rts and mentions
+    exclude_replies: true,
+    include_rts: false,
+  });
+  return tweets
+    .map(({ text, entities, created_at: time, id_str: id }) => ({
+      time,
+      message: convertToText(text, entities.urls),
+      reltime: relTime(new Date(time)),
+      url: `https://twitter.com/statuses/${id}`,
+    }))
+    .slice(0, max);
 };
 
 const TwitterType = new GraphQLObjectType({
@@ -52,10 +50,10 @@ const TwitterType = new GraphQLObjectType({
       args: { limit },
       type: new GraphQLList(tweet),
       description: `My recent tweets`,
-      resolve: async (_, { limit: max = 5 }) => getTweets(max)
+      resolve: async (_, { limit: max = 5 }) => getTweets(max),
     },
-    url: { type: GraphQLString, description: `My Twitter url`, resolve: ({ url }) => url }
-  })
+    url: { type: GraphQLString, description: `My Twitter url`, resolve: ({ url }) => url },
+  }),
 });
 
 export default TwitterType;

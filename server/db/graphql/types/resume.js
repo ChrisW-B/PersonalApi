@@ -7,8 +7,8 @@ const Resume = new GraphQLObjectType({
   description: `Versions of my Resume`,
   fields: () => ({
     pdf: { type: GraphQLString, description: `Resume in pdf format` },
-    docx: { type: GraphQLString, description: `Resume in docx format` }
-  })
+    docx: { type: GraphQLString, description: `Resume in docx format` },
+  }),
 });
 
 export default Resume;

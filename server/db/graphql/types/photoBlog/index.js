@@ -1,28 +1,23 @@
-import { GraphQLObjectType, GraphQLList, GraphQLString } from 'graphql/type';
+import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import fetch from 'node-fetch';
-import photo from './photo';
+
 import { limit } from '../../args';
+import photo from './photo';
 
 const getPhotos = async max => {
-  const res = await fetch(
-    `https://photo.chriswbarry.com/ghost/api/v2/content/posts/?key=${
-      process.env.GHOST_KEY
-    }&limit=${max}&fields=feature_image,url,title,html`
+  const response = await fetch(
+    `https://photo.chriswbarry.com/ghost/api/v2/content/posts/?key=${process.env.GHOST_KEY}&limit=${max}&fields=feature_image,url,title,html`,
   );
 
-  try {
-    const { posts } = await res.json();
-    return posts
-      .filter(({ feature_image: img }) => !!img)
-      .map(({ url, feature_image: img = ``, title, html }) => ({
-        title,
-        html,
-        url,
-        photo: img.includes(`http`) ? img : `https://photo.chriswbarry.com${img}`
-      }));
-  } catch (e) {
-    throw e;
-  }
+  const { posts } = await response.json();
+  return posts
+    .filter(({ feature_image: img }) => !!img)
+    .map(({ url, feature_image: img = ``, title, html }) => ({
+      title,
+      html,
+      url,
+      photo: img.includes(`http`) ? img : `https://photo.chriswbarry.com${img}`,
+    }));
 };
 
 const Blog = new GraphQLObjectType({
@@ -33,10 +28,10 @@ const Blog = new GraphQLObjectType({
       args: { limit },
       type: new GraphQLList(photo),
       description: `All of the avalible photos`,
-      resolve: async (_, { limit: max = 5 }) => getPhotos(max)
+      resolve: async (_, { limit: max = 5 }) => getPhotos(max),
     },
-    url: { type: GraphQLString, description: `My Photo Blog's URL`, resolve: ({ url }) => url }
-  })
+    url: { type: GraphQLString, description: `My Photo Blog's URL`, resolve: ({ url }) => url },
+  }),
 });
 
 export default Blog;

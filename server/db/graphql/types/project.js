@@ -1,6 +1,6 @@
 // db/graphql/types/project.js
 
-import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
+import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 const project = new GraphQLObjectType({
   name: `Project`,
@@ -10,8 +10,8 @@ const project = new GraphQLObjectType({
     description: { type: GraphQLString, description: `What The Project Is` },
     github: { type: GraphQLString, description: `Where You Can See The Source Code` },
     website: { type: GraphQLString, description: `Where You Can See It` },
-    technologies: { type: new GraphQLList(GraphQLString), description: `What Technologies I Used` }
-  })
+    technologies: { type: new GraphQLList(GraphQLString), description: `What Technologies I Used` },
+  }),
 });
 
 export default project;
