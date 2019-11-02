@@ -1,4 +1,5 @@
 // db/graphql/types/Github.js
+
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import fetch from 'node-fetch';
 
@@ -22,7 +23,10 @@ const getGithubInfo = async () => {
 
   return (await response.json()).data.viewer.repositories.nodes
     .reduce(
-      (repos, { url, nameWithOwner, refs }) => [...repos, ...refs.nodes.map(ref => ({ url, nameWithOwner, ref }))],
+      (repos, { url, nameWithOwner, refs }) => [
+        ...repos,
+        ...refs.nodes.map(reference => ({ url, nameWithOwner, ref: reference })),
+      ],
       [],
     )
     .reduce(
