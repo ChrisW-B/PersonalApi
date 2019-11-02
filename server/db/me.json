@@ -146,16 +146,7 @@
     },
     {
       "category": "Libraries",
-      "types": [
-        "React",
-        "Redux",
-        "Express",
-        "Sass",
-        "GraphQL",
-        "Styled Components/Emotion",
-        "Webpack",
-        "TypeScript"
-      ]
+      "types": ["React", "Redux", "Express", "Sass", "GraphQL", "Styled Components/Emotion", "Webpack", "TypeScript"]
     },
     {
       "category": "Visuals",
