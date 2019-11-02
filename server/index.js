@@ -9,4 +9,9 @@ env.config();
 
 const server = new ApolloServer({ schema, playground: true, introspection: true });
 
-exports.handler = server.createHandler();
+exports.handler = server.createHandler({
+  cors: {
+    origin: [/\.?chrisb\.(me|xyz)/, /\.?chriswb\.dev/, /\.?chriswbarry\.com/, /localhost/],
+    credentials: true,
+  },
+});
