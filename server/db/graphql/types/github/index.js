@@ -4,7 +4,7 @@ import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import fetch from 'node-fetch';
 
 import { limit } from '../../args';
-import relTime from '../../utils';
+import { relTime } from '../../utils';
 import commitType from './commit';
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);

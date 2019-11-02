@@ -3,7 +3,7 @@ import Twitter from 'twitter';
 import twitterText from 'twitter-text';
 
 import { limit } from '../../args';
-import relTime from '../../utils';
+import { relTime } from '../../utils';
 import tweet from './tweet';
 
 let twitterClient = null;
