@@ -55,7 +55,7 @@
     },
     {
       "name": "This Site!",
-      "description": "Just a personal landing page. Check out [chrisb.me/graphql](https://chrisb.me/graphql) or try `curl chrisb.me` for some fun!",
+      "description": "Just a personal landing page. Check out [api.chriswb.dev](https://api.chriswb.dev) to see where all the data is coming from!",
       "technologies": [
         "React",
         "Isomorphic React",
