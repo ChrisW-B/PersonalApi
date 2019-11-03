@@ -1,6 +1,5 @@
 [build]
   functions = "build"
-  build = "npm run build"
 
 [[redirects]]
   from = "/"
