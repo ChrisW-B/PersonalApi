@@ -20,6 +20,8 @@
   "scripts": {
     "babel": "babel-node",
     "build": "npx babel ./server --out-dir ./build --copy-files",
+    "build:netlify": "netlify-lambda build server/",
+    "start": "npm run build:netlify && netlify dev",
     "clean": "rm -rf ./build",
     "dev": "nodemon --config ./nodemon.json --exec npm run babel -- ./server ",
     "lint:js": "eslint ./server --ignore-pattern 'build/**/*.js'",
@@ -54,7 +56,6 @@
     "express-graphql": "^0.9.0",
     "graphql": "^14.5.8",
     "lastfm-njs": "^1.0.0",
-    "netlify-lambda": "^1.6.3",
     "node-fetch": "^2.6.0",
     "twitter": "^1.7.1",
     "twitter-text": "^3.0.0"
@@ -77,6 +78,7 @@
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-react": "^5.1.0",
     "lint-staged": "^9.4.2",
+    "netlify-lambda": "^1.6.3",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
     "prettier-eslint": "^9.0.0",
