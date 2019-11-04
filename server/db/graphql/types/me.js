@@ -9,38 +9,43 @@ const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 const simple = {
   name: {
     type: GraphQLString,
-    description: `My Name`,
+    description: 'My Name',
     resolve: () => info.name,
+  },
+  photo: {
+    type: GraphQLString,
+    description: 'A photo of me',
+    resolve: () => info.photo,
   },
   linkedin: {
     type: new GraphQLObjectType({
-      name: `Linkedin`,
-      description: `My Linkedin Info`,
+      name: 'Linkedin',
+      description: 'My Linkedin Info',
       fields: () => ({
-        url: { type: GraphQLString, description: `My LinkedIn URL`, resolve: ({ url }) => url },
+        url: { type: GraphQLString, description: 'My LinkedIn URL', resolve: ({ url }) => url },
       }),
     }),
-    description: `My LinkedIn Info`,
+    description: 'My LinkedIn Info',
     resolve: () => ({ url: info.linkedin }),
   },
   email: {
     type: GraphQLString,
-    description: `My Email Address`,
+    description: 'My Email Address',
     resolve: () => info.email,
   },
   employed: {
     type: GraphQLBoolean,
-    description: `Do I Have A Job?`,
+    description: 'Do I Have A Job?',
     resolve: () => info.employed,
   },
   bio: {
     type: GraphQLString,
-    description: `A Little About Me`,
+    description: 'A Little About Me',
     resolve: () => info.bio,
   },
   interests: {
     type: GraphQLString,
-    description: `What I'm Interested In`,
+    description: "What I'm Interested In",
     resolve: () => info.interests,
   },
 };
@@ -48,24 +53,24 @@ const simple = {
 const complex = {
   resume: {
     type: resume,
-    description: `My Resume`,
+    description: 'My Resume',
     resolve: () => info.resume,
   },
   projects: {
     args: { limit },
     type: new GraphQLList(project),
-    description: `Some Recent Projects`,
+    description: 'Some Recent Projects',
     resolve: (_, { limit: max }) => getFirstN(max, info.projects),
   },
   jobs: {
     args: { limit },
     type: new GraphQLList(job),
-    description: `My Recent Jobs`,
+    description: 'My Recent Jobs',
     resolve: (_, { limit: max }) => getFirstN(max, info.jobs),
   },
   skills: {
     type: new GraphQLList(skill),
-    description: `Possible Relevant Skills`,
+    description: 'Possible Relevant Skills',
     resolve: () => info.skills,
   },
 };
@@ -73,29 +78,29 @@ const complex = {
 const external = {
   twitter: {
     type: twitter,
-    description: `My Twitter Info`,
+    description: 'My Twitter Info',
     resolve: () => ({ url: info.twitter }),
   },
   github: {
     type: github,
-    description: `My Github Info`,
+    description: 'My Github Info',
     resolve: () => ({ url: info.github }),
   },
   lastfm: {
     type: lastfm,
-    description: `My Last.FM info`,
+    description: 'My Last.FM info',
     resolve: () => ({ url: info.lastfm }),
   },
   photoBlog: {
     type: photoBlog,
-    description: `My Photo Blog info`,
+    description: 'My Photo Blog info',
     resolve: () => ({ url: info.blog }),
   },
 };
 
 const me = new GraphQLObjectType({
-  name: `Me`,
-  description: `About Me`,
+  name: 'Me',
+  description: 'About Me',
   fields: () => ({
     ...simple,
     ...complex,

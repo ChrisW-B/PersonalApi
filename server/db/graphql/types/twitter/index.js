@@ -26,7 +26,7 @@ const convertToText = (text, urlEntities) => twitterText.autoLink(text, { urlEnt
 const getTweets = async max => {
   const twitter = getTwitterClient();
 
-  const tweets = await twitter.get(`statuses/user_timeline`, {
+  const tweets = await twitter.get('statuses/user_timeline', {
     screen_name: process.env.TWITTER_ID,
     count: 200, // so we get enough without rts and mentions
     exclude_replies: true,
@@ -43,16 +43,16 @@ const getTweets = async max => {
 };
 
 const TwitterType = new GraphQLObjectType({
-  name: `Twitter`,
-  description: `My Twitter Info`,
+  name: 'Twitter',
+  description: 'My Twitter Info',
   fields: () => ({
     tweets: {
       args: { limit },
       type: new GraphQLList(tweet),
-      description: `My recent tweets`,
+      description: 'My recent tweets',
       resolve: async (_, { limit: max = 5 }) => getTweets(max),
     },
-    url: { type: GraphQLString, description: `My Twitter url`, resolve: ({ url }) => url },
+    url: { type: GraphQLString, description: 'My Twitter url', resolve: ({ url }) => url },
   }),
 });
 

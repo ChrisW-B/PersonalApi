@@ -10,14 +10,15 @@ import commitType from './commit';
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 
 const getGithubInfo = async () => {
-  const response = await fetch(`https://api.github.com/graphql`, {
-    method: `POST`,
-    'Content-Type': `application/json`,
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
+    'Content-Type': 'application/json',
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     },
     body: JSON.stringify({
-      query: `{viewer{repositories(first:5 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 5){edges{node{author{user{login}} committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}`,
+      query:
+        '{viewer{repositories(first:5 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 5){edges{node{author{user{login}} committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}',
     }), // best way I know of to get all of the refs
   });
 
@@ -53,22 +54,22 @@ const getGithubInfo = async () => {
       name: `${nameWithOwner}@${branch}`,
       time: committedDate,
       reltime: relTime(new Date(committedDate)),
-      message: `${messageHeadlineHTML.replace(`…`, ``)}${messageBodyHTML.replace(`…`, ``)}`,
+      message: `${messageHeadlineHTML.replace('…', '')}${messageBodyHTML.replace('…', '')}`,
     }))
     .sort((a, b) => new Date(b.time) - new Date(a.time));
 };
 
 const Github = new GraphQLObjectType({
-  name: `Github`,
-  description: `My Github Info`,
+  name: 'Github',
+  description: 'My Github Info',
   fields: () => ({
     commits: {
       args: { limit },
       type: new GraphQLList(commitType),
-      description: `The Company's Name`,
+      description: "The Company's Name",
       resolve: async (_, { limit: max = 5 }) => getFirstN(max, await getGithubInfo()),
     },
-    url: { type: GraphQLString, description: `My Github URL`, resolve: ({ url }) => url },
+    url: { type: GraphQLString, description: 'My Github URL', resolve: ({ url }) => url },
   }),
 });
 

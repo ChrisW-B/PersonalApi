@@ -28,7 +28,7 @@ const getLastFmSongs = async max => {
   })).track;
   if (max !== tracks.length) tracks = tracks.slice(0, max); // sometimes last.fm returns 2 tracks when you ask for 1
   return tracks.map(track =>
-    Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]),
+    Object.assign({}, { title: track.name, artist: track.artist['#text'], nowplaying: false }, track['@attr']),
   );
 };
 
@@ -65,42 +65,42 @@ const getTopAlbums = async (timePeriod, max) => {
 };
 
 const LastFMType = new GraphQLObjectType({
-  name: `LastFM`,
-  description: `My Github Info`,
+  name: 'LastFM',
+  description: 'My Github Info',
   fields: () => ({
     mostPlayedTracks: {
       args: { limit, period },
       type: new GraphQLList(chartItem),
-      description: `My most played songs`,
+      description: 'My most played songs',
       resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopTracks(timePeriod, max),
     },
     mostPlayedArtists: {
       args: { limit, period },
       type: new GraphQLList(chartItem),
-      description: `My most played artists`,
+      description: 'My most played artists',
       resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopArtists(timePeriod, max),
     },
     mostPlayedAlbums: {
       args: { limit, period },
       type: new GraphQLList(chartItem),
-      description: `My most played albums`,
+      description: 'My most played albums',
       resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopAlbums(timePeriod, max),
     },
     recentSongs: {
       args: { limit },
       type: new GraphQLList(song),
-      description: `A Song I listened to`,
+      description: 'A Song I listened to',
       resolve: async (_, { limit: max = 5 }) => getLastFmSongs(max),
     },
     nowplaying: {
       type: song,
-      description: `What's playing right now`,
+      description: "What's playing right now",
       resolve: async () => {
         const songs = await getLastFmSongs(1);
         return songs[0].nowplaying ? songs[0] : null;
       },
     },
-    url: { type: GraphQLString, description: `My Last.FM url`, resolve: ({ url }) => url },
+    url: { type: GraphQLString, description: 'My Last.FM url', resolve: ({ url }) => url },
   }),
 });
 

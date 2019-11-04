@@ -12,25 +12,25 @@ const getPhotos = async max => {
   const { posts } = await response.json();
   return posts
     .filter(({ feature_image: img }) => !!img)
-    .map(({ url, feature_image: img = ``, title, html }) => ({
+    .map(({ url, feature_image: img = '', title, html }) => ({
       title,
       html,
       url,
-      photo: img.includes(`http`) ? img : `https://photo.chriswbarry.com${img}`,
+      photo: img.includes('http') ? img : `https://photo.chriswbarry.com${img}`,
     }));
 };
 
 const Blog = new GraphQLObjectType({
-  name: `Blog`,
-  description: `My blog photos`,
+  name: 'Blog',
+  description: 'My blog photos',
   fields: () => ({
     photos: {
       args: { limit },
       type: new GraphQLList(photo),
-      description: `All of the avalible photos`,
+      description: 'All of the avalible photos',
       resolve: async (_, { limit: max = 5 }) => getPhotos(max),
     },
-    url: { type: GraphQLString, description: `My Photo Blog's URL`, resolve: ({ url }) => url },
+    url: { type: GraphQLString, description: "My Photo Blog's URL", resolve: ({ url }) => url },
   }),
 });
 
