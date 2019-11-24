@@ -4,7 +4,7 @@ import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import fetch from 'node-fetch';
 
 import { limit } from '../../args';
-import { relTime } from '../../utils';
+import { relativeTime } from '../../utils';
 import commitType from './commit';
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
@@ -53,7 +53,7 @@ const getGithubInfo = async () => {
       author,
       name: `${nameWithOwner}@${branch}`,
       time: committedDate,
-      reltime: relTime(new Date(committedDate)),
+      relTime: relativeTime(new Date(committedDate)),
       message: `${messageHeadlineHTML.replace('…', '')}${messageBodyHTML.replace('…', '')}`,
     }))
     .sort((a, b) => new Date(b.time) - new Date(a.time));

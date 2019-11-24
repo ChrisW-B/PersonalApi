@@ -21,7 +21,6 @@
     "babel": "babel-node",
     "build": "npx babel ./server --out-dir ./build --copy-files",
     "build:netlify": "netlify-lambda build server/",
-    "start": "npm run build:netlify && netlify dev",
     "clean": "rm -rf ./build",
     "dev": "nodemon --config ./nodemon.json --exec npm run babel -- ./server ",
     "lint:js": "eslint ./server --ignore-pattern 'build/**/*.js'",
@@ -29,6 +28,7 @@
     "prettier": "prettier './server/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
     "prettier:check": "prettier './server/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
     "prod": "npm run clean && npm run build && npm run start",
+    "start": "npm run build:netlify && netlify dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
@@ -38,17 +38,17 @@
     }
   },
   "lint-staged": {
-    "./server/**/*.{gql,html,yml,js}": [
-      "npm run prettier:check",
-      "npm run lint:js"
-    ],
     "./server/**/*.json": [
-      "npm run prettier:check"
+      "prettier -c"
+    ],
+    "./server/**/*.{gql,html,yml,js}": [
+      "prettier -c",
+      "eslint"
     ]
   },
   "dependencies": {
-    "apollo-server": "^2.9.7",
-    "apollo-server-lambda": "^2.9.7",
+    "apollo-server": "^2.9.12",
+    "apollo-server-lambda": "^2.9.12",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
@@ -58,32 +58,32 @@
     "lastfm-njs": "^1.0.0",
     "node-fetch": "^2.6.0",
     "twitter": "^1.7.1",
-    "twitter-text": "^3.0.0"
+    "twitter-text": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/node": "^7.6.3",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.6.3",
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.5.0",
+    "eslint": "^6.7.0",
+    "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-unicorn": "^12.1.0",
-    "husky": "^3.0.9",
+    "eslint-plugin-unicorn": "^13.0.0",
+    "husky": "^3.1.0",
     "import-sort": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-react": "^5.1.0",
-    "lint-staged": "^9.4.2",
+    "lint-staged": "^9.4.3",
     "netlify-lambda": "^1.6.3",
-    "nodemon": "^1.19.4",
-    "prettier": "^1.18.2",
-    "prettier-eslint": "^9.0.0",
+    "nodemon": "^2.0.1",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
     "prettier-plugin-import-sort": "0.0.3",
-    "prettier-plugin-packagejson": "^2.0.1"
+    "prettier-plugin-packagejson": "^2.0.2"
   },
   "importSort": {
     ".js, .jsx, .es6, .es": {

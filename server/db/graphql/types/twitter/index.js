@@ -3,7 +3,7 @@ import Twitter from 'twitter';
 import twitterText from 'twitter-text';
 
 import { limit } from '../../args';
-import { relTime } from '../../utils';
+import { relativeTime } from '../../utils';
 import tweet from './tweet';
 
 let twitterClient = null;
@@ -36,7 +36,7 @@ const getTweets = async max => {
     .map(({ text, entities, created_at: time, id_str: id }) => ({
       time,
       message: convertToText(text, entities.urls),
-      reltime: relTime(new Date(time)),
+      relTime: relativeTime(new Date(time)),
       url: `https://twitter.com/statuses/${id}`,
     }))
     .slice(0, max);
