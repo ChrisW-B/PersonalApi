@@ -105,12 +105,15 @@ const LastFMType = new GraphQLObjectType({
       description: "What's playing right now",
       resolve: async () => {
         const songs = await getLastFmSongs(1);
+        const mostRecentSong = songs && songs.length > 0 && songs[0];
         const nowPlaying =
-          songs &&
-          songs.length > 0 &&
-          songs[0] &&
-          (songs[0].nowplaying === 'true' || (typeof songs[0].nowplaying == 'boolean' && songs[0].nowplaying));
-        return nowPlaying ? { ...songs[0], nowplaying: true } : null;
+          mostRecentSong &&
+          (mostRecentSong.nowplaying === 'true' ||
+            (typeof mostRecentSong.nowplaying == 'boolean' && mostRecentSong.nowplaying));
+
+        return nowPlaying
+          ? { ...mostRecentSong, nowplaying: true }
+          : { ...(mostRecentSong ? mostRecentSong : { title: null, artist: null }), nowplaying: false };
       },
     },
     url: { type: GraphQLString, description: 'My Last.FM url', resolve: ({ url }) => url },
