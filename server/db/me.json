@@ -31,28 +31,32 @@
         "Mongoose"
       ],
       "github": "https://github.com/ChrisW-B/spotifyPlaylists",
-      "website": "https://spotifyapps.chriswbarry.com/"
+      "website": "https://spotifyapps.chriswbarry.com/",
+      "screenshots": ["https://files.chrisb.me/projects/Screenshot_2019-12-29+Autoplaylists+for+Spotify.png"]
     },
     {
       "name": "@MagicGifsBot",
       "description": "A little twitter bot that might respond with a gif!",
       "technologies": ["Twitter API", "Giphy API", "Python"],
       "github": "https://github.com/ChrisW-B/MagicGifs",
-      "website": "https://twitter.com/MagicGifsBot/"
+      "website": "https://twitter.com/MagicGifsBot/",
+      "screenshots": ["https://files.chrisb.me/projects/Screen+Shot+2019-12-29+at+12.36.21+PM.png"]
     },
     {
       "name": "Positive News",
       "description": "An experiment in identifying positivity and sentiment in news",
       "technologies": ["EJS", "Express", "NodeJS", "Sentiment Analysis", "News API"],
       "github": "https://github.com/ChrisW-B/positive-news",
-      "website": "https://news.chriswbarry.com/"
+      "website": "https://news.chriswbarry.com/",
+      "screenshots": ["https://files.chrisb.me/projects/Screenshot_2019-12-29+Positive+News.png"]
     },
     {
       "name": "Isabella Kapur Art & Illustration",
       "description": "A simple portfolio site for a friend",
       "technologies": ["KeystoneJS", "Handlebars", "NodeJS", "Express", "SCSS"],
       "github": "https://github.com/ChrisW-B/izzy-website",
-      "website": "https://isabellakapur.com/"
+      "website": "https://isabellakapur.com/",
+      "screenshots": ["https://files.chrisb.me/projects/Screenshot_2019-12-29+Isabella+Kapur+Art+Illustration.jpg"]
     },
     {
       "name": "This Site!",
@@ -68,7 +72,10 @@
         "NodeJS"
       ],
       "github": "https://github.com/ChrisW-B/personalWebsite",
-      "website": "https://chriswbarry.com/"
+      "website": "https://chriswbarry.com/",
+      "screenshots": [
+        "https://files.chrisb.me/projects/Screenshot_2019-12-29+Chris+Barry+Software+Engineer+and+more.png"
+      ]
     }
   ],
   "jobs": [

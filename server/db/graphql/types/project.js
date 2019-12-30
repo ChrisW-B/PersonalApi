@@ -11,6 +11,7 @@ const project = new GraphQLObjectType({
     github: { type: GraphQLString, description: 'Where You Can See The Source Code' },
     website: { type: GraphQLString, description: 'Where You Can See It' },
     technologies: { type: new GraphQLList(GraphQLString), description: 'What Technologies I Used' },
+    screenshots: { type: new GraphQLList(GraphQLString), description: 'Images of the project' },
   }),
 });
 

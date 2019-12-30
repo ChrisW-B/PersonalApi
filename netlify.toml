@@ -1,6 +1,10 @@
 [build]
   functions = "build"
 
+[dev]
+  # command = "npm run build:netlify" # Command to start your dev server
+  publish = "build" # If you use a _redirect file, provide the path to your static content folder
+
 [[redirects]]
   from = "/"
   to = "/.netlify/functions/index"
