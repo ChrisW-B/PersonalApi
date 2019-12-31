@@ -18,18 +18,13 @@
   "author": "Chris Barry <me@chrisb.xyz>",
   "main": "build/index.js",
   "scripts": {
-    "babel": "babel-node",
-    "build": "npx babel ./server --out-dir ./build --copy-files",
-    "build:netlify": "netlify-lambda build server/",
+    "build": "netlify-lambda build src/functions --config webpack.functions.js",
     "clean": "rm -rf ./build",
-    "dev": "nodemon --config ./nodemon.json --exec npm run babel -- ./server ",
-    "lint:js": "eslint ./server --ignore-pattern 'build/**/*.js'",
-    "lint:js:fix": "eslint --fix ./server --ignore-pattern 'build/**/*.js'",
-    "prettier": "prettier './server/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
-    "prettier:check": "prettier './server/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
-    "prod": "npm run clean && npm run build && npm run start",
-    "start": "npm run build:netlify && netlify dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:js": "eslint ./src --ignore-pattern 'build/**/*.js'",
+    "lint:js:fix": "eslint --fix ./src --ignore-pattern 'build/**/*.js'",
+    "prettier": "prettier './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
+    "prettier:check": "prettier './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
+    "start": "netlify dev"
   },
   "husky": {
     "hooks": {
@@ -38,17 +33,17 @@
     }
   },
   "lint-staged": {
-    "./server/**/*.json": [
+    "./src/**/*.json": [
       "prettier -c"
     ],
-    "./server/**/*.{gql,html,yml,js}": [
+    "./src/**/*.{gql,html,yml,js,ts}": [
       "prettier -c",
       "eslint"
     ]
   },
   "dependencies": {
-    "apollo-server": "^2.9.12",
-    "apollo-server-lambda": "^2.9.12",
+    "apollo-server": "^2.9.15",
+    "apollo-server-lambda": "^2.9.15",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
@@ -61,29 +56,30 @@
     "twitter-text": "^3.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.4",
-    "@babel/core": "^7.7.4",
-    "@babel/node": "^7.7.4",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "eslint": "^6.7.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-unicorn": "^13.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-unicorn": "^15.0.1",
     "husky": "^3.1.0",
     "import-sort": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-react": "^5.1.0",
-    "lint-staged": "^9.4.3",
+    "lint-staged": "^9.5.0",
     "netlify-lambda": "^1.6.3",
-    "nodemon": "^2.0.1",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
     "prettier-plugin-import-sort": "0.0.3",
-    "prettier-plugin-packagejson": "^2.0.2"
+    "prettier-plugin-packagejson": "^2.0.6",
+    "webpack-node-externals": "^1.7.2"
   },
   "importSort": {
     ".js, .jsx, .es6, .es": {

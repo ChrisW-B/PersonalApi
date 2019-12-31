@@ -1,8 +1,10 @@
 [build]
+  command = "npm run build"
   functions = "build"
+  publish = "build"
 
 [[redirects]]
   from = "/"
-  to = "/.netlify/functions/index"
+  to = "/.netlify/functions/graphql-api"
   status = 200
   force = true
