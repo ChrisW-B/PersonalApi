@@ -18,17 +18,13 @@
   "author": "Chris Barry <me@chrisb.xyz>",
   "main": "build/index.js",
   "scripts": {
-    "babel": "babel-node",
-    "build": "npx babel ./server --out-dir ./build --copy-files",
-    "build:netlify": "netlify-lambda build server/ --config webpack.functions.js",
+    "build": "netlify-lambda build src/functions --config webpack.functions.js",
     "clean": "rm -rf ./build",
-    "lint:js": "eslint ./server --ignore-pattern 'build/**/*.js'",
-    "lint:js:fix": "eslint --fix ./server --ignore-pattern 'build/**/*.js'",
-    "prettier": "prettier './server/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
-    "prettier:check": "prettier './server/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
-    "prod": "npm run clean && npm run build && npm run start",
-    "start": "npm run build:netlify && netlify dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:js": "eslint ./src --ignore-pattern 'build/**/*.js'",
+    "lint:js:fix": "eslint --fix ./src --ignore-pattern 'build/**/*.js'",
+    "prettier": "prettier './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
+    "prettier:check": "prettier './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
+    "start": "netlify dev"
   },
   "husky": {
     "hooks": {
@@ -37,10 +33,10 @@
     }
   },
   "lint-staged": {
-    "./server/**/*.json": [
+    "./src/**/*.json": [
       "prettier -c"
     ],
-    "./server/**/*.{gql,html,yml,js}": [
+    "./src/**/*.{gql,html,yml,js,ts}": [
       "prettier -c",
       "eslint"
     ]
@@ -77,7 +73,6 @@
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-react": "^5.1.0",
     "lint-staged": "^9.5.0",
-    "netlify-cli": "^2.25.0",
     "netlify-lambda": "^1.6.3",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
