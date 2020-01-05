@@ -6,7 +6,7 @@ import { limit } from '../../args';
 import { relativeTime } from '../../utils';
 import tweet from './tweet';
 
-let twitterClient = null;
+let twitterClient: Twitter = null;
 // for some reason setting twitterClient on its own wasn't working so...
 // singleton!
 const getTwitterClient = () => {
@@ -21,9 +21,10 @@ const getTwitterClient = () => {
   return twitterClient;
 };
 
-const convertToText = (text, urlEntities) => twitterText.autoLink(text, { urlEntities });
+const convertToText = (text: string, urlEntities: twitterText.UrlEntity[]) =>
+  twitterText.autoLink(text, { urlEntities });
 
-const getTweets = async max => {
+const getTweets = async (max: number) => {
   const twitter = getTwitterClient();
 
   const tweets = await twitter.get('statuses/user_timeline', {
@@ -33,7 +34,7 @@ const getTweets = async max => {
     include_rts: false,
   });
   return tweets
-    .map(({ text, entities, created_at: time, id_str: id }) => ({
+    .map(({ text, entities, created_at: time, id_str: id }: Twitter.ResponseData) => ({
       time,
       message: convertToText(text, entities.urls),
       relTime: relativeTime(new Date(time)),
@@ -42,7 +43,7 @@ const getTweets = async max => {
     .slice(0, max);
 };
 
-const TwitterType = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Twitter',
   description: 'My Twitter Info',
   fields: () => ({
@@ -55,5 +56,3 @@ const TwitterType = new GraphQLObjectType({
     url: { type: GraphQLString, description: 'My Twitter url', resolve: ({ url }) => url },
   }),
 });
-
-export default TwitterType;

@@ -2,7 +2,7 @@
 
 import { GraphQLBoolean, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-const Song = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Song',
   description: "A Song I've Listened To",
   fields: () => ({
@@ -11,5 +11,3 @@ const Song = new GraphQLObjectType({
     artist: { type: GraphQLString, description: 'The Artist Name' },
   }),
 });
-
-export default Song;

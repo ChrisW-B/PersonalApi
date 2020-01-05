@@ -20,11 +20,12 @@
   "scripts": {
     "build": "netlify-lambda build src/functions --config webpack.functions.js",
     "clean": "rm -rf ./build",
-    "lint:js": "eslint ./src --ignore-pattern 'build/**/*.js'",
-    "lint:js:fix": "eslint --fix ./src --ignore-pattern 'build/**/*.js'",
+    "lint:js": "eslint \"./src/**/*.{t,j}s{x,}\" --ignore-pattern 'build/**/*.js'",
+    "lint:js:fix": "npm run lint:js -- --fix",
     "prettier": "prettier './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
     "prettier:check": "prettier './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
-    "start": "netlify dev"
+    "start": "netlify dev",
+    "typescript": "tsc --noEmit"
   },
   "husky": {
     "hooks": {
@@ -61,10 +62,22 @@
     "@babel/node": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-env": "^7.7.7",
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
+    "@babel/preset-typescript": "^7.7.7",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/aws-lambda": "^8.10.39",
+    "@types/node": "^13.1.4",
+    "@types/node-fetch": "^2.5.4",
+    "@types/twitter": "^1.7.0",
+    "@types/twitter-text": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
+    "@typescript-eslint/typescript-estree": "^2.14.0",
     "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.9.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-import-resolver-webpack": "^0.12.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-unicorn": "^15.0.1",
@@ -79,11 +92,16 @@
     "prettier-eslint": "^9.0.1",
     "prettier-plugin-import-sort": "0.0.3",
     "prettier-plugin-packagejson": "^2.0.6",
+    "typescript": "^3.7.4",
     "webpack-node-externals": "^1.7.2"
   },
   "importSort": {
     ".js, .jsx, .es6, .es": {
       "parser": "babylon",
+      "style": "react"
+    },
+    ".ts, .tsx": {
+      "parser": "typescript",
       "style": "react"
     }
   }

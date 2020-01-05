@@ -2,13 +2,11 @@
 
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-const Skills = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Skills',
   description: 'Some Relevant Skills',
-  fields: () => ({
+  fields: {
     category: { type: GraphQLString, description: 'The skill category' },
     types: { type: new GraphQLList(GraphQLString), description: 'The skills' },
-  }),
+  },
 });
-
-export default Skills;

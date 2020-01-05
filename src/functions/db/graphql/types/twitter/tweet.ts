@@ -2,7 +2,7 @@
 
 import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-const Tweet = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Tweet',
   description: "A Tweet I've Tweeted",
   fields: () => ({
@@ -12,5 +12,3 @@ const Tweet = new GraphQLObjectType({
     url: { type: GraphQLString, description: 'The Tweet Permalink' },
   }),
 });
-
-export default Tweet;

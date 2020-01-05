@@ -2,13 +2,11 @@
 
 import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-const Timespan = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Timespan',
   description: 'a timespan',
-  fields: () => ({
+  fields: {
     start: { type: GraphQLString, description: 'the start date' },
     end: { type: GraphQLString, description: 'the end date' },
-  }),
+  },
 });
-
-export default Timespan;
