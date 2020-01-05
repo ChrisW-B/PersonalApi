@@ -2,7 +2,7 @@
 
 import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-const Photo = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Photo',
   description: 'A Photo from my blog',
   fields: () => ({
@@ -12,5 +12,3 @@ const Photo = new GraphQLObjectType({
     url: { type: GraphQLString, description: 'a link to the post' },
   }),
 });
-
-export default Photo;

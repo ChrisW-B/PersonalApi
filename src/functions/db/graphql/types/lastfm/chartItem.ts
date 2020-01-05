@@ -1,7 +1,7 @@
 // db/graphql/types/ChartItem.js
 import { GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-const ChartItem = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'chartItem',
   description: 'An item on most played chart',
   fields: () => ({
@@ -10,5 +10,3 @@ const ChartItem = new GraphQLObjectType({
     playcount: { type: GraphQLInt, description: 'How many times the item has been played in the given time period' },
   }),
 });
-
-export default ChartItem;

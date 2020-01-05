@@ -2,9 +2,12 @@ import { GraphQLBoolean, GraphQLList, GraphQLObjectType, GraphQLString } from 'g
 
 import info from '../../me.json';
 import { limit } from '../args';
+import { getFirstN } from '../utils';
 import { github, job, lastfm, photoBlog, project, resume, skill, twitter } from '.';
 
-const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
+interface WithLimitParam {
+  limit?: number;
+}
 
 const simple = {
   name: {
@@ -21,9 +24,9 @@ const simple = {
     type: new GraphQLObjectType({
       name: 'Linkedin',
       description: 'My Linkedin Info',
-      fields: () => ({
+      fields: {
         url: { type: GraphQLString, description: 'My LinkedIn URL', resolve: ({ url }) => url },
-      }),
+      },
     }),
     description: 'My LinkedIn Info',
     resolve: () => ({ url: info.linkedin }),
@@ -60,13 +63,13 @@ const complex = {
     args: { limit },
     type: new GraphQLList(project),
     description: 'Some Recent Projects',
-    resolve: (_, { limit: max }) => getFirstN(max, info.projects),
+    resolve: (_: any, { limit: max }: WithLimitParam) => getFirstN(max, info.projects),
   },
   jobs: {
     args: { limit },
     type: new GraphQLList(job),
     description: 'My Recent Jobs',
-    resolve: (_, { limit: max }) => getFirstN(max, info.jobs),
+    resolve: (_: any, { limit: max }: WithLimitParam) => getFirstN(max, info.jobs),
   },
   skills: {
     type: new GraphQLList(skill),
@@ -98,13 +101,8 @@ const external = {
   },
 };
 
-const me = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Me',
   description: 'About Me',
-  fields: () => ({
-    ...simple,
-    ...complex,
-    ...external,
-  }),
+  fields: () => ({ ...simple, ...complex, ...external }),
 });
-export default me;

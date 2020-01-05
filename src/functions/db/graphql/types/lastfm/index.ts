@@ -5,7 +5,17 @@ import { limit, period } from '../../args';
 import chartItem from './chartItem';
 import song from './song';
 
-let lastFmClient = null;
+interface LastFMResponse {
+  name: string;
+  artist: {
+    '#text': string;
+    name: string;
+  };
+  nowPlaying: boolean;
+  '@attr': any;
+  playcount: number;
+}
+let lastFmClient: any = null;
 
 // love to singleton
 const getLastFmClient = () => {
@@ -18,25 +28,28 @@ const getLastFmClient = () => {
   return lastFmClient;
 };
 
-const getLastFmSongs = async max => {
+const getLastFmSongs = async (max: number) => {
   const lastFm = getLastFmClient();
   const maxSongs = max > 50 ? 50 : max;
 
-  let tracks = (
+  let tracks: LastFMResponse[] = (
     await lastFm.user_getRecentTracks({
       user: process.env.LASTFM_ID,
       limit: maxSongs,
     })
   ).track;
   if (max !== tracks.length) tracks = tracks.slice(0, max); // sometimes last.fm returns 2 tracks when you ask for 1
-  return tracks.map(track =>
-    Object.assign({}, { title: track.name, artist: track.artist['#text'], nowplaying: false }, track['@attr']),
-  );
+  return tracks.map(track => ({
+    title: track.name,
+    artist: track.artist['#text'],
+    nowplaying: false,
+    ...track['@attr'],
+  }));
 };
 
-const getTopTracks = async (timePeriod, max) => {
+const getTopTracks = async (timePeriod: string, max: number) => {
   const lastFm = getLastFmClient();
-  const tracks = (
+  const tracks: LastFMResponse[] = (
     await lastFm.user_getTopTracks({
       user: process.env.LASTFM_ID,
       limit: max,
@@ -46,10 +59,10 @@ const getTopTracks = async (timePeriod, max) => {
   return tracks.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
 };
 
-const getTopArtists = async (timePeriod, max) => {
+const getTopArtists = async (timePeriod: string, max: number) => {
   const lastFm = getLastFmClient();
 
-  const artists = (
+  const artists: LastFMResponse[] = (
     await lastFm.user_getTopArtists({
       user: process.env.LASTFM_ID,
       limit: max,
@@ -59,10 +72,10 @@ const getTopArtists = async (timePeriod, max) => {
   return artists.map(({ name, playcount }) => ({ artist: name, playcount }));
 };
 
-const getTopAlbums = async (timePeriod, max) => {
+const getTopAlbums = async (timePeriod: string, max: number) => {
   const lastFm = getLastFmClient();
 
-  const albums = (
+  const albums: LastFMResponse[] = (
     await lastFm.user_getTopAlbums({
       user: process.env.LASTFM_ID,
       limit: max,
@@ -72,7 +85,7 @@ const getTopAlbums = async (timePeriod, max) => {
   return albums.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
 };
 
-const LastFMType = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'LastFM',
   description: 'My Github Info',
   fields: () => ({
@@ -109,15 +122,13 @@ const LastFMType = new GraphQLObjectType({
         const nowPlaying =
           mostRecentSong &&
           (mostRecentSong.nowplaying === 'true' ||
-            (typeof mostRecentSong.nowplaying == 'boolean' && mostRecentSong.nowplaying));
+            (typeof mostRecentSong.nowplaying === 'boolean' && mostRecentSong.nowplaying));
 
         return nowPlaying
           ? { ...mostRecentSong, nowplaying: true }
-          : { ...(mostRecentSong ? mostRecentSong : { title: null, artist: null }), nowplaying: false };
+          : { ...(mostRecentSong || { title: null, artist: null }), nowplaying: false };
       },
     },
     url: { type: GraphQLString, description: 'My Last.FM url', resolve: ({ url }) => url },
   }),
 });
-
-export default LastFMType;

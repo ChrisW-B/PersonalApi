@@ -1,4 +1,4 @@
-const relativeTimeDifference = previous => {
+const relativeTimeDifference = (previous: Date): string => {
   // based on http://stackoverflow.com/a/6109105/6465731
   const current = new Date();
   const msPerMinute = 60 * 1000;
@@ -6,7 +6,7 @@ const relativeTimeDifference = previous => {
   const msPerDay = msPerHour * 24;
   const msPerMonth = msPerDay * 30;
   const msPerYear = msPerDay * 365;
-  const elapsed = current - previous;
+  const elapsed = current.valueOf() - previous.valueOf();
   let value = 0;
   let unit = '';
   if (elapsed < msPerMinute) {
@@ -19,13 +19,13 @@ const relativeTimeDifference = previous => {
     value = Math.round(elapsed / msPerHour);
     unit = 'hour';
   } else if (elapsed < msPerMonth) {
-    value = `${Math.round(elapsed / msPerDay)}`;
+    value = Math.round(elapsed / msPerDay);
     unit = 'day';
   } else if (elapsed < msPerYear) {
-    value = `${Math.round(elapsed / msPerMonth)}`;
+    value = Math.round(elapsed / msPerMonth);
     unit = 'month';
   } else {
-    value = `${Math.round(elapsed / msPerYear)}`;
+    value = Math.round(elapsed / msPerYear);
     unit = 'year';
   }
   if (value !== 1) {
