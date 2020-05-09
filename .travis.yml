@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - 'lts/*'
+branches:
+  only: 
+    - master
+
+jobs:
+  include:
+    - name: 'Check Prettier'
+      env: TEST_NAME=prettier:check
+
+    - name: 'Check ESLint'
+      env: TEST_NAME=lint:js
+
+    - name: 'Check typescript'
+      env: TEST_NAME=typescript
+
+    - name: 'Builds sucessfully'
+      env: TEST_NAME=build
+
+script: 'npm run $TEST_NAME'

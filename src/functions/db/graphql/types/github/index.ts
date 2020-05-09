@@ -43,14 +43,16 @@ const githubQuery = `
 }
 `;
 
-const getGithubInfo = async (): Promise<{
-  url: string;
-  author: string;
-  name: string;
-  time: string;
-  relTime: string;
-  message: string;
-}[]> => {
+const getGithubInfo = async (): Promise<
+  {
+    url: string;
+    author: string;
+    name: string;
+    time: string;
+    relTime: string;
+    message: string;
+  }[]
+> => {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
@@ -66,7 +68,7 @@ const getGithubInfo = async (): Promise<{
     .reduce(
       (repos: { url: string; nameWithOwner: string; ref: GithubRepoRefNode }[], { url, nameWithOwner, refs }) => [
         ...repos,
-        ...refs.nodes.map(reference => ({ url, nameWithOwner, ref: reference })),
+        ...refs.nodes.map((reference) => ({ url, nameWithOwner, ref: reference })),
       ],
       [],
     )
@@ -74,7 +76,10 @@ const getGithubInfo = async (): Promise<{
       (
         coms: (GithubHistoryNode & { url: string; nameWithOwner: string; branch: string })[],
         { url, nameWithOwner, ref },
-      ) => [...coms, ...ref.target.history.edges.map(node => ({ url, nameWithOwner, branch: ref.name, ...node.node }))],
+      ) => [
+        ...coms,
+        ...ref.target.history.edges.map((node) => ({ url, nameWithOwner, branch: ref.name, ...node.node })),
+      ],
       [],
     )
     .map(({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author }) => ({
@@ -87,7 +92,7 @@ const getGithubInfo = async (): Promise<{
       author: author.user,
     }))
     .filter(({ author }) => author !== null && author.login === process.env.GITHUB_ID)
-    .map(commit => ({ ...commit, author: commit.author.login }))
+    .map((commit) => ({ ...commit, author: commit.author.login }))
     .map(({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author }) => ({
       url: `${url}/tree/${branch}`,
       author,

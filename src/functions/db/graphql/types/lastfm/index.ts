@@ -15,11 +15,11 @@ interface LastFMResponse {
   '@attr': any;
   playcount: number;
 }
-let lastFmClient: any = null;
+let lastFmClient: any;
 
 // love to singleton
 const getLastFmClient = () => {
-  if (lastFmClient === null) {
+  if (!lastFmClient) {
     lastFmClient = new Lastfm({
       apiKey: process.env.LASTFM_KEY,
       apiSecret: process.env.LASTFM_SECRET,
@@ -39,7 +39,7 @@ const getLastFmSongs = async (max: number) => {
     })
   ).track;
   if (max !== tracks.length) tracks = tracks.slice(0, max); // sometimes last.fm returns 2 tracks when you ask for 1
-  return tracks.map(track => ({
+  return tracks.map((track) => ({
     title: track.name,
     artist: track.artist['#text'],
     nowplaying: false,
@@ -126,7 +126,7 @@ export default new GraphQLObjectType({
 
         return nowPlaying
           ? { ...mostRecentSong, nowplaying: true }
-          : { ...(mostRecentSong || { title: null, artist: null }), nowplaying: false };
+          : { ...(mostRecentSong || { title: undefined, artist: undefined }), nowplaying: false };
       },
     },
     url: { type: GraphQLString, description: 'My Last.FM url', resolve: ({ url }) => url },
