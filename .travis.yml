@@ -4,18 +4,16 @@ node_js:
 
 jobs:
   include:
-    - stage: 'Check Prettier'
-      script:
-        - 'npm run prettier:check'
+    - name: 'Check Prettier'
+      env: TEST_NAME=prettier:check
 
-    - stage: 'Check ESLint'
-      script:
-        - 'npm run lint:js'
+    - name: 'Check ESLint'
+      env: TEST_NAME=lint:js
 
-    - stage: 'Check typescript'
-      script:
-        - 'npm run typescript'
+    - name: 'Check typescript'
+      env: TEST_NAME=typescript
 
-    - stage: 'Builds sucessfully'
-      script:
-        - 'npm run build'
+    - name: 'Builds sucessfully'
+      env: TEST_NAME=build
+
+script: 'npm run $TEST_NAME'
