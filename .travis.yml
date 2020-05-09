@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 'lts/*'
+
+jobs:
+  include:
+    - stage: 'Check Prettier'
+      script:
+        - 'npm run prettier:check'
+
+    - stage: 'Check ESLint'
+      script:
+        - 'npm run lint:js'
+
+    - stage: 'Check typescript'
+      script:
+        - 'npm run typescript'
+
+    - stage: 'Builds sucessfully'
+      script:
+        - 'npm run build'

@@ -6,11 +6,11 @@ import { limit } from '../../args';
 import { relativeTime } from '../../utils';
 import tweet from './tweet';
 
-let twitterClient: Twitter = null;
+let twitterClient: Twitter;
 // for some reason setting twitterClient on its own wasn't working so...
 // singleton!
 const getTwitterClient = () => {
-  if (twitterClient === null) {
+  if (!twitterClient) {
     twitterClient = new Twitter({
       consumer_key: process.env.TWITTER_CONSUMER_KEY,
       consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
