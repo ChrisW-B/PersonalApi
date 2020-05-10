@@ -1,22 +1,20 @@
 language: node_js
 node_js:
-  - 'lts/*'
+- lts/*
 branches:
-  only: 
-    - master
-
+  only:
+  - master
 jobs:
   include:
-    - name: 'Check Prettier'
-      env: TEST_NAME=prettier:check
-
-    - name: 'Check ESLint'
-      env: TEST_NAME=lint:js
-
-    - name: 'Check typescript'
-      env: TEST_NAME=typescript
-
-    - name: 'Builds sucessfully'
-      env: TEST_NAME=build
-
-script: 'npm run $TEST_NAME'
+  - name: Check Prettier
+    env: TEST_NAME=prettier:check
+  - name: Check ESLint
+    env: TEST_NAME=lint:js
+  - name: Check typescript
+    env: TEST_NAME=typescript
+  - name: Builds sucessfully
+    env: TEST_NAME=build
+script: npm run $TEST_NAME
+notifications:
+  slack:
+    secure: ZENtvnZz0qhDH9AsaT3aIy1rwkdhl0XzkaN8yD6xclok3mE579ImuAswj2v2YRmLM0DAe6aZNaPfeOB/0BYKWmhR8SjJ+sWP0o+fWu9cQDeafhhXwDGzVZQVl7nEVCuMeYK+lcPbyWgZKW7gdxzIJVPnc/SKv2Ka5typ/APbMHUm/bsIHPQq310sAInO/cIHiQd4BtJkXbvZhLk/IVG67tlThyM610V4aUHjET6NrjOBRRoxgWuv1RS8ifZXnnt1B+SjcmEyHxvG069FQmfV5d1/yooJMrs4FzWQwObEKRvJIzh9yUa5vqnmC4jKsX4t5281EgMSAbNS7nWG1hyPnpkdH203PcK9TRYzk5HxYcuDiK0kgB8TlONGoObqszOiDobpah8D+679pflyr/hMkIsGwat0XapMWXxwuR9LNxzhBFAG4MI7vIEeQk26QwhclGjsTKPSO4HG/uTuw22G0NY0Cib2nhaCEYBxLXcHrTziX7VCxEOIo5Ts5Ca0f2VFmggYDKsFlyKCAJh11m9CehlX5jUZ2c1ctgPfPFZN3++q7TFbz3gkqHnfefEgYaT17hRe0JC8Cb+YjcuUlshT4ehGjtR84o24a4ENEkVno7VOxtuPU3QwgBoGUOVbh+sVltfvSSrOvy8t7deMS/sT8xip53zbp8TOqMsedwn0sb8=
