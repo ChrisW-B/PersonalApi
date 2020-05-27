@@ -75,7 +75,7 @@
     "prettier": "^2.0.5",
     "prettier-eslint": "^10.1.1",
     "prettier-plugin-import-sort": "0.0.4",
-    "prettier-plugin-packagejson": "^2.2.3",
+    "prettier-plugin-packagejson": "^2.2.4",
     "typescript": "^3.9.3",
     "webpack-node-externals": "^1.7.2"
   },
