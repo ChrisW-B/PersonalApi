@@ -3,7 +3,7 @@ node_js:
 - lts/*
 branches:
   only:
-  - master
+  - prod
 jobs:
   include:
   - name: Check Prettier
