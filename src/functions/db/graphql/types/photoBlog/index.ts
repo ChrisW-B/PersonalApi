@@ -1,12 +1,13 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import fetch from 'node-fetch';
 
-import { limit } from '../../args';
+import limit from '../../args/limit';
 import photo from './photo';
 
 interface PhotoBlogResponse {
   posts: {
     url: string;
+    // eslint-disable-next-line camelcase
     feature_image: string;
     title: string;
     html: string;

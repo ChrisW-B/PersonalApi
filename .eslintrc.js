@@ -1,0 +1,62 @@
+const path = require('path');
+
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'unicorn', 'import'],
+  extends: [
+    'airbnb-base',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:prettier/recommended',
+    'plugin:unicorn/recommended',
+  ],
+  parserOptions: {
+    project: [path.resolve(__dirname, 'tsconfig.json')],
+    sourceType: 'module',
+    extraFileExtensions: ['.yaml', '.json', '.yml', '.gql', '.html', '.graphql'],
+    ecmaFeatures: { jsx: true },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  env: { es2020: true, node: true },
+  settings: {
+    'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
+    'import/resolver': { typescript: { alwaysTryTypes: true } },
+  },
+  rules: {
+    '@typescript-eslint/ban-ts-comment': [
+      'error',
+      {
+        'ts-expect-error': 'allow-with-description',
+        'ts-ignore': 'allow-with-description',
+        'ts-nocheck': 'allow-with-description',
+        'ts-check': 'allow-with-description',
+      },
+    ],
+    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
+    '@typescript-eslint/no-unnecessary-condition': 'warn', // would love to add this eventually, but not sure its working correctly with graphql
+    '@typescript-eslint/no-unnecessary-qualifier': 'warn',
+    '@typescript-eslint/no-unnecessary-type-arguments': 'warn',
+    '@typescript-eslint/no-unused-expressions': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true, argsIgnorePattern: '^_+' }],
+    '@typescript-eslint/prefer-includes': 'warn',
+    '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+    '@typescript-eslint/prefer-optional-chain': 'warn',
+    '@typescript-eslint/promise-function-async': 'warn',
+    '@typescript-eslint/switch-exhaustiveness-check': 'warn',
+    '@typescript-eslint/unified-signatures': 'warn',
+    'import/extensions': ['error', { ts: 'never', json: 'always' }],
+    'import/no-unresolved': 'error',
+    'no-console': ['warn'],
+    'no-duplicate-imports': 'error',
+    'no-prototype-builtins': 'off',
+    'no-unused-expressions': 'error',
+    semi: ['warn', 'always'],
+    'space-before-function-paren': ['error', { anonymous: 'always', named: 'never', asyncArrow: 'always' }],
+    'unicorn/filename-case': ['warn', { case: 'camelCase' }],
+    'unicorn/no-reduce': 'off',
+    'unicorn/prevent-abbreviations': 'off',
+  },
+};

@@ -1,8 +1,9 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import fetch from 'node-fetch';
 
-import { limit } from '../../args';
-import { getFirstN, relativeTime } from '../../utils';
+import limit from '../../args/limit';
+import getFirstN from '../../utils/getFirstN';
+import relativeTime from '../../utils/relativeTimeDifference';
 import commitType from './commit';
 import { GithubHistoryNode, GithubRepoRefNode, GithubResponse } from './dataModel';
 

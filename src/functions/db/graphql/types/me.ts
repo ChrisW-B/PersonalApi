@@ -1,9 +1,17 @@
 import { GraphQLBoolean, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 import info from '../../me.json';
-import { limit } from '../args';
-import { getFirstN } from '../utils';
-import { github, job, lastfm, photoBlog, project, resume, skill, twitter } from '.';
+import limit from '../args/limit';
+import getFirstN from '../utils/getFirstN';
+import github from './github';
+import job from './job';
+import lastfm from './lastfm';
+import photoBlog from './photoBlog';
+import project from './project';
+import resume from './resume';
+import skill from './skill';
+import spotify from './spotify';
+import twitter from './twitter';
 
 export default new GraphQLObjectType({
   name: 'Me',
@@ -81,6 +89,11 @@ export default new GraphQLObjectType({
       type: github,
       description: 'My Github Info',
       resolve: () => ({ url: info.github }),
+    },
+    spotify: {
+      type: spotify,
+      description: 'My Spotify Info',
+      resolve: () => ({ url: info.spotify }),
     },
     lastfm: {
       type: lastfm,

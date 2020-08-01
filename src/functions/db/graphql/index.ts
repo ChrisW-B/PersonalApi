@@ -2,7 +2,7 @@
 
 import { GraphQLSchema } from 'graphql/type';
 
-import query from './queries';
+import query from './types/me';
 
 const schema = new GraphQLSchema({ query });
 

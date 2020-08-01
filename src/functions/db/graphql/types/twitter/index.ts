@@ -2,8 +2,8 @@ import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import Twitter from 'twitter';
 import twitterText from 'twitter-text';
 
-import { limit } from '../../args';
-import { relativeTime } from '../../utils';
+import limit from '../../args/limit';
+import relativeTime from '../../utils/relativeTimeDifference';
 import tweet from './tweet';
 
 let twitterClient: Twitter;

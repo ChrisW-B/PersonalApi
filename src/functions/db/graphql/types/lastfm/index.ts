@@ -1,7 +1,8 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import Lastfm from 'lastfm-njs';
 
-import { limit, period } from '../../args';
+import limit from '../../args/limit';
+import period from '../../args/period';
 import chartItem from './chartItem';
 import song from './song';
 
@@ -11,10 +12,17 @@ interface LastFMResponse {
     '#text': string;
     name: string;
   };
-  nowPlaying: boolean;
-  '@attr': any;
+  nowplaying: string | boolean;
+  '@attr': {
+    page: string;
+    perPage: string;
+    user: string;
+    total: string;
+    totalPages: string;
+  };
   playcount: number;
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let lastFmClient: any;
 
 // love to singleton
@@ -118,15 +126,12 @@ export default new GraphQLObjectType({
       description: "What's playing right now",
       resolve: async () => {
         const songs = await getLastFmSongs(1);
-        const mostRecentSong = songs && songs.length > 0 && songs[0];
+        const mostRecentSong = songs.length > 0 && songs[0];
         const nowPlaying =
-          mostRecentSong &&
-          (mostRecentSong.nowplaying === 'true' ||
-            (typeof mostRecentSong.nowplaying === 'boolean' && mostRecentSong.nowplaying));
+          (mostRecentSong.nowplaying as string | boolean) === 'true' ||
+          (typeof mostRecentSong.nowplaying === 'boolean' && mostRecentSong.nowplaying);
 
-        return nowPlaying
-          ? { ...mostRecentSong, nowplaying: true }
-          : { ...(mostRecentSong || { title: undefined, artist: undefined }), nowplaying: false };
+        return nowPlaying ? { ...mostRecentSong, nowplaying: true } : { ...mostRecentSong, nowplaying: false };
       },
     },
     url: { type: GraphQLString, description: 'My Last.FM url', resolve: ({ url }) => url },
