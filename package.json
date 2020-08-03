@@ -57,7 +57,7 @@
     "@types/twitter-text": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "@typescript-eslint/typescript-estree": "^3.7.1",
+    "@typescript-eslint/typescript-estree": "^3.8.0",
     "eslint": "^7.5.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
