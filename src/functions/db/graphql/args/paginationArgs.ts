@@ -1,4 +1,4 @@
-import { GraphQLInputObjectType, GraphQLInt } from 'graphql/type';
+import { GraphQLInputObjectType, GraphQLInt, } from 'graphql/type';
 
 const PaginationArgType = new GraphQLInputObjectType({
   name: 'PaginationArg',
