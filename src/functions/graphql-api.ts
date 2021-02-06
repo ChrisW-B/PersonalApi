@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/filename-case */
-
 import { ApolloServer } from 'apollo-server-lambda';
 
 import schema from './db/graphql';

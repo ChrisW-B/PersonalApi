@@ -1,27 +1,24 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "./dist",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "resolveJsonModule": true,
-    "module": "esNext",
-    "target": "es2015",
-    "jsx": "preserve",
-    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "inlineSources": true,
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "module": "esNext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "moduleResolution": "node",
-    "lib": ["esnext", "dom"],
-    "baseUrl": ".",
-    "plugins": [
-      {
-        "name": "tslint-language-service",
-        "alwaysShowRuleFailuresAsWarnings": false,
-        "ignoreDefinitionFiles": true
-      }
-    ]
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "sourceRoot": "/",
+    "strict": true,
+    "target": "es2017",
   },
-  "include": ["./src/"]
+  "include": ["./src"]
 }
