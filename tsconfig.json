@@ -18,7 +18,7 @@
     "sourceMap": true,
     "sourceRoot": "/",
     "strict": true,
-    "target": "es2017",
+    "target": "es2017"
   },
   "include": ["./src"]
 }

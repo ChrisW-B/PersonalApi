@@ -18,12 +18,12 @@
   "author": "Chris Barry <me@chrisb.xyz>",
   "main": "build/index.js",
   "scripts": {
-    "build": "netlify-lambda build src/functions --config webpack.functions.js",
+    "build": "netlify-lambda build src/functions --config webpack.config.js",
     "clean": "rm -rf ./build",
     "lint:js": "eslint \"./src/**/*.{t,j}s{x,}\" --ignore-pattern 'build/**/*.js'",
     "lint:js:fix": "npm run lint:js -- --fix",
-    "prettier": "prettier --list-different './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
-    "prettier:check": "prettier './src/**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
+    "prettier": "prettier --list-different './**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
+    "prettier:check": "prettier './**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
     "start": "netlify dev",
     "typescript": "tsc --noEmit"
   },
@@ -67,11 +67,13 @@
     "netlify-cli": "^3.5.0",
     "netlify-lambda": "^2.0.3",
     "nodemon": "^2.0.7",
+    "path": "^0.12.7",
     "prettier": "^2.2.1",
     "prettier-eslint": "^12.0.0",
     "prettier-plugin-import-sort": "0.0.6",
     "prettier-plugin-packagejson": "^2.2.9",
     "typescript": "^4.1.3",
+    "webpack-cli": "^4.5.0",
     "webpack-node-externals": "^2.5.2"
   },
   "importSort": {
