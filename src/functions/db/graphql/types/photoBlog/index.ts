@@ -7,6 +7,7 @@ import photo from './photo';
 interface PhotoBlogResponse {
   posts: {
     url: string;
+    // eslint-disable-next-line camelcase
     feature_image: string;
     title: string;
     html: string;
@@ -18,8 +19,8 @@ const getPhotos = async (max: number) => {
     `https://photo.chriswbarry.com/ghost/api/v2/content/posts/?key=${process.env.GHOST_KEY}&limit=${max}&fields=feature_image,url,title,html`,
   );
 
-  const { posts }: PhotoBlogResponse = await response.json();
-  return posts
+  const data = await (response.json() as Promise<PhotoBlogResponse>);
+  return data.posts
     .filter(({ feature_image: img }) => !!img)
     .map(({ url, feature_image: img = '', title, html }) => ({
       title,
@@ -39,6 +40,10 @@ export default new GraphQLObjectType({
       description: 'All of the avalible photos',
       resolve: async (_, { limit: max = 5 }) => getPhotos(max),
     },
-    url: { type: GraphQLString, description: "My Photo Blog's URL", resolve: ({ url }) => url },
+    url: {
+      type: GraphQLString,
+      description: "My Photo Blog's URL",
+      resolve: ({ url }: { url: string }) => url,
+    },
   }),
 });

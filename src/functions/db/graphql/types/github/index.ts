@@ -46,7 +46,7 @@ const githubQuery = `
 const getGithubInfo = async (): Promise<
   {
     url: string;
-    author: string;
+    author?: string;
     name: string;
     time: string;
     relTime: string;
@@ -62,7 +62,7 @@ const getGithubInfo = async (): Promise<
     body: JSON.stringify({ query: githubQuery }),
   });
 
-  const responseJson: GithubResponse = await response.json();
+  const responseJson = (await response.json()) as GithubResponse;
 
   const simplifiedGithubData = responseJson.data.viewer.repositories.nodes
     .reduce(
@@ -103,11 +103,11 @@ const getGithubInfo = async (): Promise<
         committedDate,
         messageBodyHTML,
         messageHeadlineHTML,
-        author: author.user,
+        author: author?.user,
       }),
     )
-    .filter(({ author }) => author !== null && author.login === process.env.GITHUB_ID)
-    .map((commit) => ({ ...commit, author: commit.author.login }))
+    .filter(({ author }) => author?.login === process.env.GITHUB_ID)
+    .map((commit) => ({ ...commit, author: commit.author?.login }))
     .map(
       ({
         url,
@@ -144,6 +144,10 @@ export default new GraphQLObjectType({
       description: "The Company's Name",
       resolve: async (_, { limit: max = 5 }) => getFirstN(max, await getGithubInfo()),
     },
-    url: { type: GraphQLString, description: 'My Github URL', resolve: ({ url }) => url },
+    url: {
+      type: GraphQLString,
+      description: 'My Github URL',
+      resolve: ({ url }: { url: string }) => url,
+    },
   }),
 });

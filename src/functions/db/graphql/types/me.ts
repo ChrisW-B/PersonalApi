@@ -24,7 +24,11 @@ export default new GraphQLObjectType({
         name: 'Linkedin',
         description: 'My Linkedin Info',
         fields: {
-          url: { type: GraphQLString, description: 'My LinkedIn URL', resolve: ({ url }) => url },
+          url: {
+            type: GraphQLString,
+            description: 'My LinkedIn URL',
+            resolve: ({ url }: { url: string }) => url,
+          },
         },
       }),
       description: 'My LinkedIn Info',
