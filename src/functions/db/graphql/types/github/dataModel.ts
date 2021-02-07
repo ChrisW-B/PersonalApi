@@ -2,9 +2,9 @@ export interface GithubHistoryNode {
   committedDate: string;
   messageHeadlineHTML: string;
   messageBodyHTML: string;
-  author: {
-    user: {
-      login: string;
+  author?: {
+    user?: {
+      login?: string;
     };
   };
 }

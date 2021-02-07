@@ -1,6 +1,6 @@
 import { GraphQLEnumType } from 'graphql/type';
 
-export default {
+const period = {
   name: 'period',
   description: 'The time period',
   type: new GraphQLEnumType({
@@ -15,3 +15,5 @@ export default {
     },
   }),
 };
+
+export default period;

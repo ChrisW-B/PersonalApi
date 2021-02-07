@@ -32,7 +32,9 @@
       ],
       "github": "https://github.com/ChrisW-B/spotifyPlaylists",
       "website": "https://spotifyapps.chriswbarry.com/",
-      "screenshots": ["https://files.chrisb.me/projects/Screenshot_2019-12-29+Autoplaylists+for+Spotify.png"]
+      "screenshots": [
+        "https://files.chrisb.me/projects/Screenshot_2019-12-29+Autoplaylists+for+Spotify.png"
+      ]
     },
     {
       "name": "@MagicGifsBot",
@@ -56,7 +58,9 @@
       "technologies": ["KeystoneJS", "Handlebars", "NodeJS", "Express", "SCSS"],
       "github": "https://github.com/ChrisW-B/izzy-website",
       "website": "https://isabellakapur.com/",
-      "screenshots": ["https://files.chrisb.me/projects/Screenshot_2019-12-29+Isabella+Kapur+Art+Illustration.jpg"]
+      "screenshots": [
+        "https://files.chrisb.me/projects/Screenshot_2019-12-29+Isabella+Kapur+Art+Illustration.jpg"
+      ]
     },
     {
       "name": "This Site!",
@@ -154,7 +158,16 @@
     },
     {
       "category": "Libraries",
-      "types": ["React", "Redux", "Express", "Sass", "GraphQL", "Styled Components/Emotion", "Webpack", "TypeScript"]
+      "types": [
+        "React",
+        "Redux",
+        "Express",
+        "Sass",
+        "GraphQL",
+        "Styled Components/Emotion",
+        "Webpack",
+        "TypeScript"
+      ]
     },
     {
       "category": "Visuals",
@@ -166,7 +179,15 @@
     },
     {
       "category": "Platforms",
-      "types": ["OS X", "Linux", "Windows", "Unix", "Bash/Fish Shell", "Microsoft Office", "Windows Phone"]
+      "types": [
+        "OS X",
+        "Linux",
+        "Windows",
+        "Unix",
+        "Bash/Fish Shell",
+        "Microsoft Office",
+        "Windows Phone"
+      ]
     }
   ]
 }
