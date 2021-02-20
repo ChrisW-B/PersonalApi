@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "config:base",
+    "group:recommended",
+    "group:definitelyTyped",
+    "group:testNonMajor",
+    "group:linters",
+    "group:babelMonorepo",
+    "group:typescript-eslintMonorepo",
+    "schedule:nonOfficeHours"
+  ],
+  "separateMinorPatch": true,
+  "reviewers": ["chrisw-b"],
+  "labels": ["dependencies"],
+  "prHourlyLimit": 5,
+  "assignAutomerge": true,
+  "automerge": true,
+  "packageRules": [
+    {
+      "packagePatterns": ["*"],
+      "patch": {
+        "groupName": "all patch dependencies",
+        "groupSlug": "all-patch"
+      }
+    },
+    {
+      "packagePatterns": ["*"],
+      "minor": {
+        "groupName": "all minor dependencies",
+        "groupSlug": "all-minor"
+      }
+    },
+    {
+      "packagePatterns": ["^@testing-library"],
+      "groupName": "testing-library packages"
+    },
+    {
+      "packagePatterns": ["^jest"],
+      "groupName": "jest packages"
+    },
+    {
+      "packagePatterns": ["^webpack"],
+      "groupName": "webpack packages"
+    }
+  ]
+}
