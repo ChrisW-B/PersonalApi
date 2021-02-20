@@ -9,9 +9,10 @@
     "group:typescript-eslintMonorepo",
     "schedule:nonOfficeHours"
   ],
+  "masterIssue": true,
   "separateMinorPatch": true,
   "reviewers": ["chrisw-b"],
-  "labels": ["dependencies"],
+  "labels": ["dependency"],
   "prHourlyLimit": 5,
   "assignAutomerge": true,
   "automerge": true,
