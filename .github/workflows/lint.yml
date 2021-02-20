@@ -2,7 +2,7 @@ name: Lint Project
 
 on:
   pull_request:
-    branches: [prod]
+    branches: [main]
 
 jobs:
   check-prettier:
