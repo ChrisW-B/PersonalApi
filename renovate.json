@@ -6,8 +6,7 @@
     "group:testNonMajor",
     "group:linters",
     "group:babelMonorepo",
-    "group:typescript-eslintMonorepo",
-    "schedule:nonOfficeHours"
+    "group:typescript-eslintMonorepo"
   ],
   "masterIssue": true,
   "separateMinorPatch": true,
@@ -16,6 +15,8 @@
   "prHourlyLimit": 5,
   "assignAutomerge": true,
   "automerge": true,
+  "timezone": "America/New_York",
+  "schedule": ["before 12pm on Monday"],
   "packageRules": [
     {
       "packagePatterns": ["*"],
