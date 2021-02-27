@@ -1,6 +1,6 @@
 // db/graphql/types/Song.js
 
-import { GraphQLBoolean, GraphQLObjectType, GraphQLString } from 'graphql/type';
+import { GraphQLBoolean, GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 export default new GraphQLObjectType({
   name: 'Song',
@@ -9,5 +9,6 @@ export default new GraphQLObjectType({
     title: { type: GraphQLString, description: 'The Song Name' },
     nowplaying: { type: GraphQLBoolean, description: 'Whether the song is currently playing' },
     artist: { type: GraphQLString, description: 'The Artist Name' },
+    id: { type: GraphQLID, description: 'A unique ID' },
   }),
 });

@@ -1,6 +1,5 @@
-/* eslint-disable camelcase */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import crypto from 'crypto';
+
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import Lastfm from 'lastfm-njs';
 
@@ -19,6 +18,7 @@ interface LastFMResponse {
   playcount: number;
 }
 
+/* eslint-disable camelcase */
 interface LastFMClient {
   user_getRecentTracks(data: { user: string; limit: number }): Promise<{ track: LastFMResponse[] }>;
   user_getTopTracks(data: {
@@ -31,18 +31,21 @@ interface LastFMClient {
     limit: number;
     period: string;
   }): Promise<{ artist: LastFMResponse[] }>;
+
   user_getTopAlbums(data: {
     user: string;
     limit: number;
     period: string;
   }): Promise<{ album: LastFMResponse[] }>;
 }
+/* eslint-enable camelcase */
 let lastFmClient: LastFMClient | undefined;
 
 // love to singleton
 
 const getLastFmClient = (): LastFMClient => {
   if (!lastFmClient) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     lastFmClient = new Lastfm({
       apiKey: process.env.LASTFM_KEY,
       apiSecret: process.env.LASTFM_SECRET,
@@ -70,6 +73,10 @@ const getLastFmSongs = async (max: number): Promise<LastFMTrack[]> => {
     artist: track.artist['#text'],
     nowplaying: false,
     ...track['@attr'],
+    id: crypto
+      .createHash('sha1')
+      .update(track.name + track.artist['#text'])
+      .digest('base64'),
   }));
 };
 
@@ -82,7 +89,15 @@ const getTopTracks = async (timePeriod: string, max: number) => {
       period: timePeriod,
     })
   ).track;
-  return tracks.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
+  return tracks.map(({ name, artist, playcount }) => ({
+    name,
+    artist: artist.name,
+    playcount,
+    id: crypto
+      .createHash('sha1')
+      .update(name + artist.name)
+      .digest('base64'),
+  }));
 };
 
 const getTopArtists = async (timePeriod: string, max: number) => {
@@ -95,7 +110,11 @@ const getTopArtists = async (timePeriod: string, max: number) => {
       period: timePeriod,
     })
   ).artist;
-  return artists.map(({ name, playcount }) => ({ artist: name, playcount }));
+  return artists.map(({ name, playcount }) => ({
+    artist: name,
+    playcount,
+    id: crypto.createHash('sha1').update(name).digest('base64'),
+  }));
 };
 
 const getTopAlbums = async (timePeriod: string, max: number) => {
@@ -108,7 +127,15 @@ const getTopAlbums = async (timePeriod: string, max: number) => {
       period: timePeriod,
     })
   ).album;
-  return albums.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
+  return albums.map(({ name, artist, playcount }) => ({
+    name,
+    artist: artist.name,
+    playcount,
+    id: crypto
+      .createHash('sha1')
+      .update(name + artist.name)
+      .digest('base64'),
+  }));
 };
 
 export default new GraphQLObjectType({

@@ -1,6 +1,6 @@
 // db/graphql/types/Photo.js
 
-import { GraphQLObjectType, GraphQLString } from 'graphql/type';
+import { GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 export default new GraphQLObjectType({
   name: 'Photo',
@@ -10,5 +10,6 @@ export default new GraphQLObjectType({
     html: { type: GraphQLString, description: 'The photo html' },
     photo: { type: GraphQLString, description: 'The photo source' },
     url: { type: GraphQLString, description: 'a link to the post' },
+    id: { type: GraphQLID, description: 'A unique identifier for a photo' },
   }),
 });

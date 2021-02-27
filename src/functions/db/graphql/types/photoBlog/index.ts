@@ -11,21 +11,20 @@ interface PhotoBlogResponse {
     feature_image: string;
     title: string;
     html: string;
+    id: string;
   }[];
 }
 
 const getPhotos = async (max: number) => {
   const response = await fetch(
-    `https://photo.chriswbarry.com/ghost/api/v2/content/posts/?key=${process.env.GHOST_KEY}&limit=${max}&fields=feature_image,url,title,html`,
+    `https://photo.chriswbarry.com/ghost/api/v2/content/posts/?key=${process.env.GHOST_KEY}&limit=${max}&fields=feature_image,url,title,html,id`,
   );
 
   const data = await (response.json() as Promise<PhotoBlogResponse>);
   return data.posts
     .filter(({ feature_image: img }) => !!img)
-    .map(({ url, feature_image: img = '', title, html }) => ({
-      title,
-      html,
-      url,
+    .map(({ feature_image: img = '', ...rest }) => ({
+      ...rest,
       photo: img.includes('http') ? img : `https://photo.chriswbarry.com${img}`,
     }));
 };
