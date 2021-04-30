@@ -2,47 +2,32 @@
   "extends": [
     "config:base",
     "group:recommended",
+    "group:monorepos",
     "group:definitelyTyped",
-    "group:testNonMajor",
-    "group:linters",
-    "group:babelMonorepo",
-    "group:typescript-eslintMonorepo"
+    "group:linters"
   ],
-  "masterIssue": true,
+  "timezone": "America/New_York",
+  "dependencyDashboard": true,
   "separateMinorPatch": true,
   "reviewers": ["chrisw-b"],
   "labels": ["dependency"],
-  "prHourlyLimit": 5,
   "assignAutomerge": true,
   "automerge": true,
-  "timezone": "America/New_York",
   "schedule": ["before 3pm on Sunday"],
   "packageRules": [
     {
-      "packagePatterns": ["*"],
-      "patch": {
-        "groupName": "all patch dependencies",
-        "groupSlug": "all-patch"
-      }
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "all minor dependencies",
+      "groupSlug": "all-minor-deps",
+      "labels": ["minor"]
     },
     {
-      "packagePatterns": ["*"],
-      "minor": {
-        "groupName": "all minor dependencies",
-        "groupSlug": "all-minor"
-      }
-    },
-    {
-      "packagePatterns": ["^@testing-library"],
-      "groupName": "testing-library packages"
-    },
-    {
-      "packagePatterns": ["^jest"],
-      "groupName": "jest packages"
-    },
-    {
-      "packagePatterns": ["^webpack"],
-      "groupName": "webpack packages"
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "all patch dependencies",
+      "groupSlug": "all-patch-deps",
+      "labels": ["patch"]
     }
   ]
 }
