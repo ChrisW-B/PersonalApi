@@ -9,6 +9,7 @@ export default new GraphQLObjectType({
     title: { type: GraphQLString, description: 'The Song Name' },
     nowplaying: { type: GraphQLBoolean, description: 'Whether the song is currently playing' },
     artist: { type: GraphQLString, description: 'The Artist Name' },
+    image: { type: GraphQLString, description: 'A link to LastFM Album Art' },
     id: { type: GraphQLID, description: 'A unique ID' },
   }),
 });
