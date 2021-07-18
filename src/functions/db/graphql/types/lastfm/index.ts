@@ -74,7 +74,7 @@ const getLastFmSongs = async (max: number): Promise<LastFMTrack[]> => {
     title: track.name,
     artist: track.artist['#text'],
     nowplaying: false,
-    image: track?.image?.length ? track.image[track.image.length - 1]?.['#text'] : '',
+    image: track.image.length ? track.image[track.image.length - 1]?.['#text'] : '',
     ...track['@attr'],
     id: crypto
       .createHash('sha1')
