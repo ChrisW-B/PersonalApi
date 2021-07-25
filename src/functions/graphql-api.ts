@@ -14,7 +14,11 @@ const server = new ApolloServer({
 
 const apolloHandler = server.createHandler();
 
-const handler: typeof apolloHandler = async (event, context, cb): Promise<ReturnType<typeof apolloHandler>> => {
+const handler: typeof apolloHandler = async (
+  event,
+  context,
+  cb,
+): Promise<ReturnType<typeof apolloHandler>> => {
   event.requestContext = event.requestContext ? event.requestContext : {};
   event.version = event.version ? event.version : '1.0';
   try {
