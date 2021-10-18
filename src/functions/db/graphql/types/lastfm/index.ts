@@ -149,25 +149,28 @@ export default new GraphQLObjectType({
       args: { limit, period },
       type: new GraphQLList(chartItem),
       description: 'My most played songs',
-      resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopTracks(timePeriod, max),
+      resolve: async (_, { limit: max = 10, period: timePeriod }) =>
+        getTopTracks(timePeriod as string, max as number),
     },
     mostPlayedArtists: {
       args: { limit, period },
       type: new GraphQLList(chartItem),
       description: 'My most played artists',
-      resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopArtists(timePeriod, max),
+      resolve: async (_, { limit: max = 10, period: timePeriod }) =>
+        getTopArtists(timePeriod as string, max as number),
     },
     mostPlayedAlbums: {
       args: { limit, period },
       type: new GraphQLList(chartItem),
       description: 'My most played albums',
-      resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopAlbums(timePeriod, max),
+      resolve: async (_, { limit: max = 10, period: timePeriod }) =>
+        getTopAlbums(timePeriod as string, max as number),
     },
     recentSongs: {
       args: { limit },
       type: new GraphQLList(song),
       description: 'A Song I listened to',
-      resolve: async (_, { limit: max = 5 }) => getLastFmSongs(max),
+      resolve: async (_, { limit: max = 5 }) => getLastFmSongs(max as number),
     },
     nowplaying: {
       type: song,

@@ -142,7 +142,7 @@ export default new GraphQLObjectType({
       args: { limit },
       type: new GraphQLList(commitType),
       description: "The Company's Name",
-      resolve: async (_, { limit: max = 5 }) => getFirstN(max, await getGithubInfo()),
+      resolve: async (_, { limit: max = 5 }) => getFirstN(max as number, await getGithubInfo()),
     },
     url: {
       type: GraphQLString,
