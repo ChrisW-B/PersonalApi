@@ -37,7 +37,7 @@ export default new GraphQLObjectType({
       args: { limit },
       type: new GraphQLList(photo),
       description: 'All of the avalible photos',
-      resolve: async (_, { limit: max = 5 }) => getPhotos(max),
+      resolve: async (_, { limit: max = 5 }) => getPhotos(max as number),
     },
     url: {
       type: GraphQLString,

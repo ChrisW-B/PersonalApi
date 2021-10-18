@@ -63,7 +63,7 @@ export default new GraphQLObjectType({
       args: { limit },
       type: new GraphQLList(tweet),
       description: 'My recent tweets',
-      resolve: async (_, { limit: max = 5 }) => getTweets(max),
+      resolve: async (_, { limit: max = 5 }) => getTweets(max as number),
     },
     url: {
       type: GraphQLString,
