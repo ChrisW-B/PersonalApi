@@ -1,7 +1,9 @@
 [build]
-  command = "npm run build"
   functions = "build"
   publish = "build"
+
+[functions]
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/"
