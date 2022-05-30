@@ -63,13 +63,13 @@ export default new GraphQLObjectType({
       args: { limit },
       type: new GraphQLList(project),
       description: 'Some Recent Projects',
-      resolve: (_, { limit: max }) => getFirstN(max as number, info.projects),
+      resolve: (_, { limit: max }) => getFirstN(info.projects, max as number),
     },
     jobs: {
       args: { limit },
       type: new GraphQLList(job),
       description: 'My Recent Jobs',
-      resolve: (_, { limit: max }) => getFirstN(max as number, info.jobs),
+      resolve: (_, { limit: max }) => getFirstN(info.jobs, max as number),
     },
     skills: {
       type: new GraphQLList(skill),
