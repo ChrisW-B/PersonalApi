@@ -1,7 +1,9 @@
 [build]
-  command = "npm run build"
-  functions = "build"
-  publish = "build"
+  functions = "src/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["express"]
 
 [[redirects]]
   from = "/"
