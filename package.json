@@ -31,7 +31,7 @@
     "apollo-server-lambda": "3.10.0",
     "graphql": "16.5.0",
     "lastfm-njs": "1.0.0",
-    "node-fetch": "3.2.9",
+    "node-fetch": "3.2.10",
     "twitter": "1.7.1",
     "twitter-text": "3.1.0"
   },
