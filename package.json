@@ -29,7 +29,7 @@
   "dependencies": {
     "apollo-server-core": "3.10.1",
     "apollo-server-lambda": "3.10.1",
-    "graphql": "16.5.0",
+    "graphql": "16.6.0",
     "lastfm-njs": "1.0.0",
     "node-fetch": "3.2.10",
     "twitter": "1.7.1",
