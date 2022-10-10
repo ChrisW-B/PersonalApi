@@ -27,8 +27,8 @@
     "typescript": "tsc --noEmit"
   },
   "dependencies": {
-    "apollo-server-core": "3.10.2",
-    "apollo-server-lambda": "3.10.2",
+    "apollo-server-core": "3.10.3",
+    "apollo-server-lambda": "3.10.3",
     "graphql": "16.6.0",
     "lastfm-njs": "1.0.0",
     "node-fetch": "3.2.10",
