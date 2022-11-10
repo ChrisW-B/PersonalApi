@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "apollo-server-core": "3.11.0",
-    "apollo-server-lambda": "3.10.3",
+    "apollo-server-lambda": "3.11.1",
     "graphql": "16.6.0",
     "lastfm-njs": "1.0.0",
     "node-fetch": "3.2.10",
@@ -38,10 +38,10 @@
   "devDependencies": {
     "@types/twitter": "1.7.1",
     "@types/twitter-text": "3.1.4",
-    "@typescript-eslint/eslint-plugin": "5.41.0",
-    "@typescript-eslint/parser": "5.41.0",
-    "@typescript-eslint/typescript-estree": "5.41.0",
-    "eslint": "8.26.0",
+    "@typescript-eslint/eslint-plugin": "5.42.1",
+    "@typescript-eslint/parser": "5.42.1",
+    "@typescript-eslint/typescript-estree": "5.42.1",
+    "eslint": "8.27.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
