@@ -1,7 +1,7 @@
 // db/graphql/types/ChartItem.js
 import { GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-export default new GraphQLObjectType({
+const chartItem = new GraphQLObjectType({
   name: 'chartItem',
   description: 'An item on most played chart',
   fields: () => ({
@@ -16,3 +16,4 @@ export default new GraphQLObjectType({
     },
   }),
 });
+export default chartItem;

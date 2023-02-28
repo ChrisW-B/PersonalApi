@@ -5,7 +5,7 @@ import { limit } from '../args';
 import { getFirstN } from '../utils';
 import { github, job, lastfm, photoBlog, project, resume, skill, twitter } from '.';
 
-export default new GraphQLObjectType({
+const me = new GraphQLObjectType({
   name: 'Me',
   description: 'About Me',
   fields: () => ({
@@ -98,3 +98,5 @@ export default new GraphQLObjectType({
     },
   }),
 });
+
+export default me;

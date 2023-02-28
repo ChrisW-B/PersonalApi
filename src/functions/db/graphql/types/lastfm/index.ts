@@ -140,8 +140,7 @@ const getTopAlbums = async (timePeriod: string, max: number) => {
       .digest('base64'),
   }));
 };
-
-export default new GraphQLObjectType({
+const lastFM = new GraphQLObjectType({
   name: 'LastFM',
   description: 'My Github Info',
   fields: () => ({
@@ -195,3 +194,5 @@ export default new GraphQLObjectType({
     },
   }),
 });
+
+export default lastFM;

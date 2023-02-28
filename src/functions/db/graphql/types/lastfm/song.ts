@@ -2,7 +2,7 @@
 
 import { GraphQLBoolean, GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-export default new GraphQLObjectType({
+const song = new GraphQLObjectType({
   name: 'Song',
   description: "A Song I've Listened To",
   fields: () => ({
@@ -13,3 +13,4 @@ export default new GraphQLObjectType({
     id: { type: GraphQLID, description: 'A unique ID' },
   }),
 });
+export default song;

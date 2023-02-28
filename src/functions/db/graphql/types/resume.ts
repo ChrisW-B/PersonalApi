@@ -2,7 +2,7 @@
 
 import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-export default new GraphQLObjectType({
+const resume = new GraphQLObjectType({
   name: 'Resume',
   description: 'Versions of my Resume',
   fields: {
@@ -10,3 +10,4 @@ export default new GraphQLObjectType({
     docx: { type: GraphQLString, description: 'Resume in docx format' },
   },
 });
+export default resume;

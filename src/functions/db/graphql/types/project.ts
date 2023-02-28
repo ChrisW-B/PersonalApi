@@ -2,7 +2,7 @@
 
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-export default new GraphQLObjectType({
+const project = new GraphQLObjectType({
   name: 'Project',
   description: "A Project I've done",
   fields: {
@@ -14,3 +14,4 @@ export default new GraphQLObjectType({
     screenshots: { type: new GraphQLList(GraphQLString), description: 'Images of the project' },
   },
 });
+export default project;

@@ -2,7 +2,7 @@
 
 import { GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-export default new GraphQLObjectType({
+const photo = new GraphQLObjectType({
   name: 'Photo',
   description: 'A Photo from my blog',
   fields: () => ({
@@ -13,3 +13,5 @@ export default new GraphQLObjectType({
     id: { type: GraphQLID, description: 'A unique identifier for a photo' },
   }),
 });
+
+export default photo;
