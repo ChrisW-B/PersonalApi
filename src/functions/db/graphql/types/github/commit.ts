@@ -1,7 +1,7 @@
 // db/graphql/types/Commit.js
 import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-export default new GraphQLObjectType({
+const commit = new GraphQLObjectType({
   name: 'Commit',
   description: "A Commit I've done",
   fields: () => ({
@@ -13,3 +13,4 @@ export default new GraphQLObjectType({
     message: { type: GraphQLString, description: 'What the commit said' },
   }),
 });
+export default commit;

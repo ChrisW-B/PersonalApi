@@ -55,7 +55,7 @@ const getTweets = async (max: number) => {
     .slice(0, max);
 };
 
-export default new GraphQLObjectType({
+const twitter = new GraphQLObjectType({
   name: 'Twitter',
   description: 'My Twitter Info',
   fields: () => ({
@@ -72,3 +72,5 @@ export default new GraphQLObjectType({
     },
   }),
 });
+
+export default twitter;

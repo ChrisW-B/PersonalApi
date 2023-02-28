@@ -134,7 +134,7 @@ const getGithubInfo = async (): Promise<
   return simplifiedGithubData;
 };
 
-export default new GraphQLObjectType({
+const github = new GraphQLObjectType({
   name: 'Github',
   description: 'My Github Info',
   fields: () => ({
@@ -151,3 +151,4 @@ export default new GraphQLObjectType({
     },
   }),
 });
+export default github;

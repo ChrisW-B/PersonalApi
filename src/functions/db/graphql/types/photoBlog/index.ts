@@ -29,7 +29,7 @@ const getPhotos = async (max: number) => {
     }));
 };
 
-export default new GraphQLObjectType({
+const blog = new GraphQLObjectType({
   name: 'Blog',
   description: 'My blog photos',
   fields: () => ({
@@ -46,3 +46,5 @@ export default new GraphQLObjectType({
     },
   }),
 });
+
+export default blog;

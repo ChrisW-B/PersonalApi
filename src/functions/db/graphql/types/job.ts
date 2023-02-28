@@ -4,7 +4,7 @@ import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 import Timespan from './timespan';
 
-export default new GraphQLObjectType({
+const job = new GraphQLObjectType({
   name: 'Job',
   description: "A Job I've done",
   fields: () => ({
@@ -14,3 +14,5 @@ export default new GraphQLObjectType({
     details: { type: new GraphQLList(GraphQLString), description: 'More About the Job' },
   }),
 });
+
+export default job;
