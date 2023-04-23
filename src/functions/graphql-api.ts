@@ -24,6 +24,8 @@ const corsMiddleware: middleware.MiddlewareFn<typeof apolloHandler> =
     result.headers = {
       ...result.headers,
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Credentials': 'true',
     };
     return Promise.resolve();
