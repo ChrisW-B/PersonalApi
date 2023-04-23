@@ -11,6 +11,6 @@ const server = new ApolloServer({
   plugins: [ApolloServerPluginLandingPageLocalDefault()],
 });
 
-const apolloHandler = handlers.createAPIGatewayProxyEventV2RequestHandler();
+const apolloHandler = handlers.createAPIGatewayProxyEventRequestHandler();
 
 export const handler = startServerAndCreateLambdaHandler(server, apolloHandler);
