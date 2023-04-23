@@ -11,9 +11,9 @@ interface TwitterResponse {
   entities: {
     urls: twitterText.UrlEntity[];
   };
-  // eslint-disable-next-line camelcase
+
   created_at: string;
-  // eslint-disable-next-line camelcase
+
   id_str: string;
 }
 
