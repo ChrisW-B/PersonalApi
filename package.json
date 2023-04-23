@@ -50,7 +50,7 @@
     "import-sort-parser-typescript": "6.0.0",
     "import-sort-style-react": "5.1.0",
     "netlify-cli": "13.2.2",
-    "prettier": "2.8.7",
+    "prettier": "2.8.8",
     "prettier-eslint": "15.0.1",
     "prettier-plugin-import-sort": "0.0.7",
     "prettier-plugin-packagejson": "2.4.3",
