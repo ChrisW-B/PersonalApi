@@ -7,7 +7,7 @@ import photo from './photo';
 interface PhotoBlogResponse {
   posts: {
     url: string;
-    // eslint-disable-next-line camelcase
+
     feature_image: string;
     title: string;
     html: string;

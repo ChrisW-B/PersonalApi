@@ -19,7 +19,6 @@ interface LastFMResponse {
   playcount: number;
 }
 
-/* eslint-disable camelcase */
 interface LastFMClient {
   user_getRecentTracks(data: { user: string; limit: number }): Promise<{ track: LastFMResponse[] }>;
   user_getTopTracks(data: {
