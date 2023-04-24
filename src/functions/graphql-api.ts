@@ -28,12 +28,9 @@ export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, 
       return async (result) => {
         result.headers = {
           ...result.headers,
-          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-          'access-control-allow-methods': 'GET,POST,OPTIONS',
-          'access-control-allow-origin': origin ?? '*',
-          'content-type': 'application/json',
-          'Access-Control-Max-Age': '2592000',
-          'Access-Control-Allow-Credentials': 'true',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Methods': '*',
+          'Access-Control-Allow-Origin': origin ?? '*',
         };
       };
     },
