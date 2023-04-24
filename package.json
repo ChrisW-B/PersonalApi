@@ -19,7 +19,7 @@
   "main": "build/index.js",
   "scripts": {
     "clean": "rm -rf ./build",
-    "lint:js": "eslint \"./src/**/*.{t,j}s{x,}\" --ignore-pattern 'build/**/*.js'",
+    "lint:js": "eslint \"./src/**/*.{t,j}s{x,}\" --report-unused-disable-directives --ignore-pattern 'build/**/*.js'",
     "lint:js:fix": "npm run lint:js -- --fix",
     "prettier": "prettier --list-different './**/*.{ts,js,jsx,tsx,gql,html,yml,json}' --write",
     "prettier:check": "prettier './**/*.{ts,js,jsx,tsx,gql,html,yml,json}' -c",
