@@ -16,21 +16,14 @@ const apolloHandler = handlers.createAPIGatewayProxyEventRequestHandler();
 export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, {
   middleware: [
     /* eslint-disable @typescript-eslint/require-await,no-param-reassign */
-    async (event) => {
-      let origin = event.headers.Origin;
-      if (origin === undefined) {
-        const host = event.headers.Host ?? '';
-        const isSecure = /^localhost:\d{1,5}$/.test(host);
-        origin = `${isSecure ? 'https' : 'http'}://${host}`;
-      }
-      return async (result) => {
-        result.headers = {
-          ...result.headers,
-          'access-control-allow-headers': 'Origin, X-Requested-With, Content-Type, Accept',
-          'access-control-allow-methods': '*',
-          'access-control-allow-origin': origin ?? '*',
-          'content-type': 'application/json',
-        };
+    async () => async (result) => {
+      result.headers = {
+        ...result.headers,
+        'access-control-allow-headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        'access-control-allow-methods': '*',
+        'access-control-allow-origin':
+          'https://chrisb.xyz,https://chriswb.dev/,https://chrisb.me,https://chriswbarry.com',
+        'content-type': 'application/json',
       };
     },
     /* eslint-enable @typescript-eslint/require-await,arrow-body-style,no-param-reassign */
