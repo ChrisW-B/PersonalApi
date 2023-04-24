@@ -16,14 +16,25 @@ const apolloHandler = handlers.createAPIGatewayProxyEventRequestHandler();
 export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, {
   middleware: [
     /* eslint-disable @typescript-eslint/require-await,no-param-reassign */
-    async () => async (result) => {
-      result.headers = {
-        ...result.headers,
-        'access-control-allow-headers': 'Origin, X-Requested-With, Content-Type, Accept',
-        'access-control-allow-methods': '*',
-        'access-control-allow-origin':
-          'https://chrisb.xyz,https://chriswb.dev/,https://chrisb.me,https://chriswbarry.com',
-        'content-type': 'application/json',
+    async (event) => {
+      let origin: string | undefined = event.headers.Origin;
+      const host = event.headers.Host;
+      if (!origin && host) {
+        const isSecure = /^localhost:\d{1,5}$/.test(host);
+        origin = `${isSecure ? 'https' : 'http'}://${host}`;
+      } else if (!origin) {
+        origin = '*';
+      }
+      return async (result) => {
+        result.headers = {
+          ...result.headers,
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+          'access-control-allow-methods': 'GET,POST,OPTIONS',
+          'access-control-allow-origin': origin ?? '*',
+          'content-type': 'application/json',
+          'Access-Control-Max-Age': '2592000',
+          'Access-Control-Allow-Credentials': 'true',
+        };
       };
     },
     /* eslint-enable @typescript-eslint/require-await,arrow-body-style,no-param-reassign */
