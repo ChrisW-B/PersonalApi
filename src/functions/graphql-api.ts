@@ -5,6 +5,12 @@ import { handlers, startServerAndCreateLambdaHandler } from '@as-integrations/aw
 
 import schema from './db/graphql';
 
+const HEADERS = {
+  'access-control-allow-headers': 'content-type',
+  'access-control-allow-methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'access-control-allow-origin': '*',
+};
+
 const server = new ApolloServer({
   schema,
   introspection: true,
@@ -16,22 +22,9 @@ const apolloHandler = handlers.createAPIGatewayProxyEventRequestHandler();
 export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, {
   middleware: [
     /* eslint-disable @typescript-eslint/require-await,arrow-body-style,no-param-reassign */
-    async (event) => {
+    async () => {
       return async (result) => {
-        event.headers = {
-          ...result.headers,
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Methods': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        };
-        result.headers = {
-          ...result.headers,
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Methods': '*',
-          'Access-Control-Allow-Credentials': 'true',
-        };
+        result.headers = { ...result.headers, ...HEADERS };
       };
     },
     /* eslint-enable @typescript-eslint/require-await,arrow-body-style,no-param-reassign */
