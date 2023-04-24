@@ -7,7 +7,7 @@ import schema from './db/graphql';
 
 const HEADERS = {
   'access-control-allow-headers': 'content-type',
-  'access-control-allow-methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  'access-control-allow-methods': 'GET,HEAD,POST,OPTIONS',
   'access-control-allow-origin': '*',
 };
 
