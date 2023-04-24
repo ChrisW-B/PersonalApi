@@ -15,9 +15,8 @@ const apolloHandler = handlers.createAPIGatewayProxyEventRequestHandler();
 
 export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, {
   middleware: [
-    /* eslint-disable @typescript-eslint/require-await,arrow-body-style,no-param-reassign */
+    /* eslint-disable @typescript-eslint/require-await,no-param-reassign */
     async (event) => {
-      console.log({ event, headers: event.headers });
       let origin = event.headers.Origin;
       if (origin === undefined) {
         const host = event.headers.Host ?? '';
@@ -27,9 +26,10 @@ export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, 
       return async (result) => {
         result.headers = {
           ...result.headers,
-          'access-control-allow-headers': 'content-type',
+          'access-control-allow-headers': 'Origin, X-Requested-With, Content-Type, Accept',
           'access-control-allow-methods': '*',
           'access-control-allow-origin': origin ?? '*',
+          'content-type': 'application/json',
         };
       };
     },
