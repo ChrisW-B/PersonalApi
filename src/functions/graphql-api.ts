@@ -26,6 +26,10 @@ export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, 
         origin = '*';
       }
       return async (result) => {
+        if (event.httpMethod.toUpperCase() === 'OPTIONS') {
+          result.statusCode = 200;
+          result.body = '';
+        }
         result.headers = {
           ...result.headers,
           'Access-Control-Allow-Headers': '*',
