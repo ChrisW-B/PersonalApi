@@ -27,7 +27,7 @@
     "typescript": "tsc --noEmit"
   },
   "dependencies": {
-    "@apollo/server": "4.7.1",
+    "@apollo/server": "4.7.4",
     "@as-integrations/aws-lambda": "2.0.1",
     "graphql": "16.7.1",
     "lastfm-njs": "1.0.0",
