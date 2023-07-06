@@ -27,7 +27,7 @@
     "typescript": "tsc --noEmit"
   },
   "dependencies": {
-    "@apollo/server": "4.7.4",
+    "@apollo/server": "4.7.5",
     "@as-integrations/aws-lambda": "2.0.1",
     "graphql": "16.7.1",
     "lastfm-njs": "1.0.0",
@@ -49,11 +49,11 @@
     "import-sort": "6.0.0",
     "import-sort-parser-typescript": "6.0.0",
     "import-sort-style-react": "5.1.0",
-    "netlify-cli": "15.8.0",
+    "netlify-cli": "15.8.1",
     "prettier": "2.8.8",
     "prettier-eslint": "15.0.1",
     "prettier-plugin-import-sort": "0.0.7",
-    "prettier-plugin-packagejson": "2.4.3",
+    "prettier-plugin-packagejson": "2.4.4",
     "typescript": "5.1.6"
   },
   "importSort": {
