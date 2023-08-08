@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@apollo/server": "4.9.1",
-    "@as-integrations/aws-lambda": "2.0.1",
+    "@as-integrations/aws-lambda": "3.0.0",
     "graphql": "16.7.1",
     "lastfm-njs": "1.0.0",
     "node-fetch": "3.3.2",
