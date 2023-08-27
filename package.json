@@ -27,7 +27,7 @@
     "typescript": "tsc --noEmit"
   },
   "dependencies": {
-    "@apollo/server": "4.9.1",
+    "@apollo/server": "4.9.2",
     "@as-integrations/aws-lambda": "3.1.0",
     "graphql": "16.8.0",
     "lastfm-njs": "1.0.0",
@@ -38,9 +38,9 @@
   "devDependencies": {
     "@types/twitter": "1.7.1",
     "@types/twitter-text": "3.1.5",
-    "@typescript-eslint/eslint-plugin": "6.4.0",
-    "@typescript-eslint/parser": "6.4.0",
-    "@typescript-eslint/typescript-estree": "6.4.0",
+    "@typescript-eslint/eslint-plugin": "6.4.1",
+    "@typescript-eslint/parser": "6.4.1",
+    "@typescript-eslint/typescript-estree": "6.4.1",
     "eslint": "8.47.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-prettier": "9.0.0",
