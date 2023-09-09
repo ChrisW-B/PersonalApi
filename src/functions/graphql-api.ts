@@ -24,7 +24,12 @@ export const handler = startServerAndCreateLambdaHandler(
     middleware: [
       // eslint-disable-next-line @typescript-eslint/require-await
       async (event) => async (result) => {
+        result.headers = { ...result.headers, ...CORS_HEADERS };
         if (event.httpMethod.toUpperCase() === 'OPTIONS') {
+          result.headers = CORS_HEADERS;
+          result.statusCode = 200;
+          result.body = '';
+        } else if (event.httpMethod.toUpperCase() === 'HEAD') {
           result.headers = CORS_HEADERS;
           result.statusCode = 200;
           result.body = '';
