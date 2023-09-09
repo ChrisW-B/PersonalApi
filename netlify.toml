@@ -1,5 +1,6 @@
 [build]
   functions = "src/functions"
+  publish = "public"
 
 [functions]
   node_bundler = "esbuild"
@@ -10,3 +11,8 @@
   to = "/.netlify/functions/graphql-api"
   status = 200
   force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"

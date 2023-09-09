@@ -13,9 +13,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: 'lts/*'
+          cache: 'npm'
 
-      - run: npm ci
+      - run: npm i --no-save --prefer-offline --no-audit
 
       - run: npm run prettier:check
 
@@ -27,9 +28,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: 'lts/*'
+          cache: 'npm'
 
-      - run: npm ci
+      - run: npm i --no-save --prefer-offline --no-audit
 
       - run: npm run lint:js
 
@@ -41,8 +43,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: 'lts/*'
+          cache: 'npm'
 
-      - run: npm ci
+      - run: npm i --no-save --prefer-offline --no-audit
 
       - run: npm run typescript

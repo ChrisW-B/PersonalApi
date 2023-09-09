@@ -1,43 +1,35 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable import/prefer-default-export,no-param-reassign */
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { handlers, startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
 
 import schema from './db/graphql';
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+};
+
 const server = new ApolloServer({
   schema,
   introspection: true,
+  csrfPrevention: false,
   plugins: [ApolloServerPluginLandingPageLocalDefault()],
 });
 
-const apolloHandler = handlers.createAPIGatewayProxyEventRequestHandler();
-
-export const handler = startServerAndCreateLambdaHandler(server, apolloHandler, {
-  middleware: [
-    /* eslint-disable @typescript-eslint/require-await,no-param-reassign */
-    async (event) => {
-      let origin: string | undefined = event.headers.Origin;
-      const host = event.headers.Host;
-      if (!origin && host) {
-        const isSecure = /^localhost:\d{1,5}$/.test(host);
-        origin = `${isSecure ? 'https' : 'http'}://${host}`;
-      } else if (!origin) {
-        origin = '*';
-      }
-      return async (result) => {
+export const handler = startServerAndCreateLambdaHandler(
+  server,
+  handlers.createAPIGatewayProxyEventRequestHandler(),
+  {
+    middleware: [
+      // eslint-disable-next-line @typescript-eslint/require-await
+      async (event) => async (result) => {
         if (event.httpMethod.toUpperCase() === 'OPTIONS') {
+          result.headers = CORS_HEADERS;
           result.statusCode = 200;
           result.body = '';
         }
-        result.headers = {
-          ...result.headers,
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Methods': '*',
-          'Access-Control-Allow-Origin': origin ?? '*',
-        };
-      };
-    },
-    /* eslint-enable @typescript-eslint/require-await,arrow-body-style,no-param-reassign */
-  ],
-});
+      },
+    ],
+  },
+);

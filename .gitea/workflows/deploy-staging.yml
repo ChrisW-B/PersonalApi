@@ -1,0 +1,13 @@
+name: Publish to Netlify
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  publish-to-netlify:
+    uses: 'chrisw-b/ci-cd/.gitea/workflows/deploy-to-netlify.yml@v4.1'
+    secrets: inherit
+    with:
+      PR_NUMBER: ${{ gitea.event.number }}
+      NETLIFY_CONTEXT: 'deploy-preview'
