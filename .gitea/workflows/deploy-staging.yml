@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish-to-netlify:
-    uses: 'chrisw-b/ci-cd/.gitea/workflows/deploy-to-netlify.yml@v4.1'
+    uses: 'chrisw-b/ci-cd/.gitea/workflows/deploy-to-netlify.yml@v5'
     secrets: inherit
     with:
       PR_NUMBER: ${{ gitea.event.number }}
