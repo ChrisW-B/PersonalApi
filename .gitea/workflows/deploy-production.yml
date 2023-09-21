@@ -6,9 +6,41 @@ on:
       - '*'
 
 jobs:
-  release-to-netlify:
-    uses: 'chrisw-b/ci-cd/.gitea/workflows/deploy-to-netlify.yml@v5'
-    secrets: inherit
-    with:
-      PR_NUMBER: ${{ gitea.event.number }}
-      NETLIFY_CONTEXT: 'production'
+  deploy-to-netlify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: ⚛️ Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+          token: ${{ secrets.GH_NODE_TOKEN }}
+
+      - name: 🏎️ Install dependencies
+        run: npm i --no-save --prefer-offline --no-audit
+
+      - name: 🌳 Extract branch name
+        id: extract_branch
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+
+      - name: 🛠️ Build and Upload to Netlify
+        id: upload
+        uses: 'https://git.chriswb.dev/chrisw-b/ci-cd/deploy-to-netlify@v6.3.1'
+        with:
+          GITHUB_API_URL: ${{ github.api_url }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITEA_TOKEN: ${{ secrets.NETLIFY_GITEA_TOKEN }}
+          NETLIFY_CONTEXT: 'production'
+          PR_NUMBER: ${{ github.event.number }}
+          SOURCE_BRANCH: ${{ steps.extract_branch.outputs.branch }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: ⏳ Verify deployment
+        run: |
+          curl -H 'Content-Type: application/json' -X POST -d '{"query": "{name}"}' ${{ steps.upload.outputs.preview_url }} 2>&1 | grep "Chris Barry"
