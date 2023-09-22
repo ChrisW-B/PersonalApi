@@ -2,7 +2,7 @@
 
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-import Timespan from './timespan';
+import Timespan from '~/graphql/types/timespan';
 
 const job = new GraphQLObjectType({
   name: 'Job',

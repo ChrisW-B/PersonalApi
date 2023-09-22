@@ -2,9 +2,9 @@ import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import Twitter from 'twitter';
 import twitterText from 'twitter-text';
 
-import { limit } from '../../args';
-import { relativeTime } from '../../utils';
-import tweet from './tweet';
+import limit from '~/graphql/args/limit';
+import tweet from '~/graphql/types/twitter/tweet';
+import relativeTimeDifference from '~/graphql/utils/relativeTimeDifference';
 
 interface TwitterResponse {
   text: string;
@@ -49,7 +49,7 @@ const getTweets = async (max: number) => {
     .map(({ text, entities, created_at: time, id_str: id }) => ({
       time,
       message: convertToText(text, entities.urls),
-      relTime: relativeTime(new Date(time)),
+      relTime: relativeTimeDifference(new Date(time)),
       url: `https://twitter.com/statuses/${id}`,
     }))
     .slice(0, max);

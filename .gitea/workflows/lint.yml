@@ -16,7 +16,7 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - run: npm i --no-save --prefer-offline --no-audit
+      - run: npm i --no-savec --no-fund --no-audit --no-progress
 
       - run: npm run prettier:check
 
@@ -31,7 +31,7 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - run: npm i --no-save --prefer-offline --no-audit
+      - run: npm i --no-savec --no-fund --no-audit --no-progress
 
       - run: npm run lint:js
 
@@ -46,6 +46,6 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - run: npm i --no-save --prefer-offline --no-audit
+      - run: npm i --no-savec --no-fund --no-audit --no-progress
 
       - run: npm run typescript

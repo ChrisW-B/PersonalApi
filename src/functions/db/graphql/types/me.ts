@@ -1,9 +1,16 @@
 import { GraphQLBoolean, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 
-import info from '../../me.json';
-import { limit } from '../args';
-import { getFirstN } from '../utils';
-import { github, job, lastfm, photoBlog, project, resume, skill, twitter } from '.';
+import info from '~/../db/me.json';
+import limit from '~/graphql/args/limit';
+import github from '~/graphql/types/github';
+import job from '~/graphql/types/job';
+import lastFM from '~/graphql/types/lastfm';
+import photoBlog from '~/graphql/types/photoBlog';
+import project from '~/graphql/types/project';
+import resume from '~/graphql/types/resume';
+import skills from '~/graphql/types/skill';
+import twitter from '~/graphql/types/twitter';
+import getFirstN from '~/graphql/utils/getFirstN';
 
 const me = new GraphQLObjectType({
   name: 'Me',
@@ -72,29 +79,41 @@ const me = new GraphQLObjectType({
       resolve: (_, { limit: max }) => getFirstN(info.jobs, max as number),
     },
     skills: {
-      type: new GraphQLList(skill),
+      type: new GraphQLList(skills),
       description: 'Possible Relevant Skills',
       resolve: () => info.skills,
     },
     twitter: {
       type: twitter,
       description: 'My Twitter Info',
+      deprecationReason: 'No longer using twitter, use `social` instead',
       resolve: () => ({ url: info.twitter }),
+    },
+    social: {
+      type: GraphQLString,
+      description: 'My public social account',
+      resolve: () => info.social,
     },
     github: {
       type: github,
       description: 'My Github Info',
+      deprecationReason: "I'm moving off of GitHub, check `git` instead",
       resolve: () => ({ url: info.github }),
     },
+    git: {
+      type: GraphQLString,
+      description: 'My Git Info',
+      resolve: () => info.git,
+    },
     lastfm: {
-      type: lastfm,
+      type: lastFM,
       description: 'My Last.FM info',
       resolve: () => ({ url: info.lastfm }),
     },
     photoBlog: {
       type: photoBlog,
       description: 'My Photo Blog info',
-      resolve: () => ({ url: info.blog }),
+      resolve: () => ({ url: info.photoblog }),
     },
   }),
 });

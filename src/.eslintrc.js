@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'no-relative-import-paths'],
   extends: [
     '../.eslintrc.js',
     'plugin:@typescript-eslint/recommended',
@@ -15,6 +15,10 @@ module.exports = {
   },
   env: { node: true },
   rules: {
+    'no-relative-import-paths/no-relative-import-paths': [
+      'warn',
+      { allowSameFolder: false, rootDir: 'src/functions/db', prefix: '~' },
+    ],
     '@typescript-eslint/ban-ts-comment': [
       'error',
       {

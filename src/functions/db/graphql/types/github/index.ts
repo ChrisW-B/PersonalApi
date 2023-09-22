@@ -1,10 +1,15 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import fetch from 'node-fetch';
 
-import { limit } from '../../args';
-import { getFirstN, relativeTime } from '../../utils';
-import commitType from './commit';
-import { GithubHistoryNode, GithubRepoRefNode, GithubResponse } from './dataModel';
+import limit from '~/graphql/args/limit';
+import commitType from '~/graphql/types/github/commit';
+import type {
+  GithubHistoryNode,
+  GithubRepoRefNode,
+  GithubResponse,
+} from '~/graphql/types/github/dataModel';
+import getFirstN from '~/graphql/utils/getFirstN';
+import relativeTimeDifference from '~/graphql/utils/relativeTimeDifference';
 
 // best way I know of to get all of the refs
 const githubQuery = `
@@ -119,10 +124,10 @@ const getGithubInfo = async (): Promise<
         author,
       }) => ({
         url: `${url}/tree/${branch}`,
-        author,
+        author: author ?? '',
         name: `${nameWithOwner}@${branch}`,
         time: committedDate,
-        relTime: relativeTime(new Date(committedDate)),
+        relTime: relativeTimeDifference(new Date(committedDate)),
         message: `${messageHeadlineHTML.replace('…', '')}${messageBodyHTML.replace('…', '')}`,
       }),
     )

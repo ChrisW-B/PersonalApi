@@ -3,7 +3,7 @@ import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { handlers, startServerAndCreateLambdaHandler } from '@as-integrations/aws-lambda';
 
-import schema from './db/graphql';
+import schema from '~/graphql';
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -30,9 +30,7 @@ export const handler = startServerAndCreateLambdaHandler(
           result.statusCode = 200;
           result.body = '';
         } else if (event.httpMethod.toUpperCase() === 'HEAD') {
-          result.headers = CORS_HEADERS;
           result.statusCode = 200;
-          result.body = '';
         }
       },
     ],

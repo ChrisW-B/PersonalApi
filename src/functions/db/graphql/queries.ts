@@ -1,4 +1,4 @@
 // db/graphql/queries.js
-import queries from './types/me';
+import queries from '~/graphql/types/me';
 
 export default queries;

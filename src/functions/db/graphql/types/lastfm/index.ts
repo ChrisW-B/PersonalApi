@@ -3,9 +3,10 @@ import crypto from 'crypto';
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import Lastfm from 'lastfm-njs';
 
-import { limit, period } from '../../args';
-import chartItem from './chartItem';
-import song from './song';
+import limit from '~/graphql/args/limit';
+import period from '~/graphql/args/period';
+import chartItem from '~/graphql/types/lastfm/chartItem';
+import song from '~/graphql/types/lastfm/song';
 
 interface LastFMResponse {
   name: string;
@@ -73,7 +74,7 @@ const getLastFmSongs = async (max: number): Promise<LastFMTrack[]> => {
     title: track.name,
     artist: track.artist['#text'],
     nowplaying: false,
-    image: track.image.length ? track.image[track.image.length - 1]?.['#text'] : '',
+    image: track.image.length ? track.image[track.image.length - 1]?.['#text'] ?? '' : '',
     ...track['@attr'],
     id: crypto
       .createHash('sha1')
@@ -183,7 +184,7 @@ const lastFM = new GraphQLObjectType({
 
         return nowPlaying
           ? { ...mostRecentSong, nowplaying: true }
-          : { ...(mostRecentSong || { title: undefined, artist: undefined }), nowplaying: false };
+          : { ...(mostRecentSong ?? { title: undefined, artist: undefined }), nowplaying: false };
       },
     },
     url: {

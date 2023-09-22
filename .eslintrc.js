@@ -2,7 +2,7 @@ module.exports = {
   extends: ['airbnb-base', 'eslint:recommended', 'prettier'],
   env: { es2020: true },
   settings: {
-    'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } },
+    'import/resolver': { typescript: { alwaysTryType: true } },
   },
   rules: {
     'import/extensions': [
