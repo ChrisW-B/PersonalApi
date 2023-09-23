@@ -1,15 +1,15 @@
 {
   "name": "Chris Barry",
   "email": "me@chriswbarry.com",
-  "github": "https://github.com/chrisw-b",
   "git": "https://git.chriswb.dev/chrisw-b",
-  "twitter": "https://twitter.com/chrisw_b",
-  "social": "https://social.chriswb.dev/chrisw_b",
-  "linkedin": "https://linkedin.com/in/chriswbarry",
+  "github": "https://github.com/chrisw-b",
   "lastfm": "https://last.fm/user/chrisw_b",
+  "linkedin": "https://linkedin.com/in/chriswbarry",
   "photoblog": "https://photo.chrisb.me/",
+  "social": "https://social.chriswb.dev/chrisw_b",
+  "twitter": "https://twitter.com/chrisw_b",
   "employed": true,
-  "bio": "I'm a frontend developer in NYC, where I focus on React, JavaScript/TypeScript, and NodeJS. I love learning the newest technologies to create great web experiences. I'm currently at [Great Jones](//greatjones.co), where I'm working as a frontend dev on a team to build React apps.  \r\n\r\nPreviously, I worked at **Kip**, where I worked on a Slack bot built with NodeJS and later worked in a team creating an entirely new frontend in React.",
+  "bio": "I'm a frontend developer in NYC, where I focus on React, JavaScript/TypeScript, and NodeJS. I love learning the newest technologies to create great web experiences. I'm currently at [Stessa](//stessa.com), where I'm working as a senior frontend engineer on a team to build React apps.  \r\n\r\nPreviously, I worked at **Kip**, where I worked on a Slack bot built with NodeJS and later worked in a team creating an entirely new frontend in React.",
   "interests": "I love working in frontend, especially React and CSS. Right now I'm working with Typescript with React and styling in JS with Styled-Components",
   "photo": "https://files.chrisb.me/profile_photo.d834101eaa08.png",
   "resume": {
@@ -75,6 +75,18 @@
     }
   ],
   "jobs": [
+    {
+      "company": "Stessa",
+      "title": "Senior Software Engineer",
+      "when": {
+        "start": "August 2021 (on acquisition of Great Jones)",
+        "end": "Present"
+      },
+      "details": [
+        "Led the creation and maitenance of a shared company wide design system, for use across multiple Roofstock companies",
+        "Managed multiple federated frontends, updating old vue code to new react apps, and working on onboarding flows"
+      ]
+    },
     {
       "company": "Great Jones",
       "title": "Software Engineer",

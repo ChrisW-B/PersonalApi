@@ -67,7 +67,6 @@ const me = new GraphQLObjectType({
       description: 'Possible Relevant Skills',
       resolve: () => info.skills,
     },
-
     github: {
       type: new GraphQLObjectType({
         name: 'GitHub',
@@ -80,10 +79,25 @@ const me = new GraphQLObjectType({
           },
         },
       }),
+      deprecationReason: "I don't use github much anymore. Try the `git` field instead.",
       description: 'My GitHub Info',
       resolve: () => ({ url: info.github }),
     },
-
+    git: {
+      type: new GraphQLObjectType({
+        name: 'Git',
+        description: 'My Git Info',
+        fields: {
+          url: {
+            type: GraphQLString,
+            description: 'My Git URL',
+            resolve: ({ url }: { url: string }) => url,
+          },
+        },
+      }),
+      description: 'My Git Info',
+      resolve: () => ({ url: info.git }),
+    },
     linkedin: {
       type: new GraphQLObjectType({
         name: 'Linkedin',
@@ -111,23 +125,9 @@ const me = new GraphQLObjectType({
           },
         },
       }),
+      deprecationReason: "I don't use twitter much anymore. Try the `social` field instead.",
       description: 'My Twitter Info',
       resolve: () => ({ url: info.twitter }),
-    },
-    git: {
-      type: new GraphQLObjectType({
-        name: 'Git',
-        description: 'My Git Info',
-        fields: {
-          url: {
-            type: GraphQLString,
-            description: 'My Git URL',
-            resolve: ({ url }: { url: string }) => url,
-          },
-        },
-      }),
-      description: 'My Git Info',
-      resolve: () => ({ url: info.git }),
     },
     social: {
       type: social,

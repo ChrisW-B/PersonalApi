@@ -46,7 +46,7 @@
     "eslint-plugin-prettier": "5.0.0",
     "import-sort": "6.0.0",
     "import-sort-parser-typescript": "6.0.0",
-    "import-sort-style-react": "5.1.0",
+    "import-sort-style-custom": "2.1.2",
     "prettier": "3.0.3",
     "prettier-eslint": "15.0.1",
     "prettier-plugin-import-sort": "0.0.7",
@@ -56,11 +56,11 @@
   "importSort": {
     ".js, .jsx, .es6, .es": {
       "parser": "babylon",
-      "style": "react"
+      "style": "custom"
     },
     ".ts, .tsx": {
       "parser": "typescript",
-      "style": "react"
+      "style": "custom"
     }
   }
 }
