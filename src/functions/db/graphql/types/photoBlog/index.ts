@@ -1,5 +1,4 @@
 import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
-import fetch from 'node-fetch';
 
 import limit from '~/graphql/args/limit';
 import photo from '~/graphql/types/photoBlog/photo';

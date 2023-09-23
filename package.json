@@ -31,13 +31,9 @@
     "@as-integrations/aws-lambda": "3.1.0",
     "graphql": "16.8.0",
     "lastfm-njs": "1.0.0",
-    "node-fetch": "3.3.2",
-    "twitter": "1.7.1",
-    "twitter-text": "3.1.0"
+    "masto": "6.3.0"
   },
   "devDependencies": {
-    "@types/twitter": "1.7.2",
-    "@types/twitter-text": "3.1.6",
     "@typescript-eslint/eslint-plugin": "6.7.0",
     "@typescript-eslint/parser": "6.7.0",
     "@typescript-eslint/typescript-estree": "6.7.0",

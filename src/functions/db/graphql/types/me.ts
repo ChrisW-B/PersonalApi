@@ -2,14 +2,13 @@ import { GraphQLBoolean, GraphQLList, GraphQLObjectType, GraphQLString } from 'g
 
 import info from '~/../db/me.json';
 import limit from '~/graphql/args/limit';
-import github from '~/graphql/types/github';
 import job from '~/graphql/types/job';
 import lastFM from '~/graphql/types/lastfm';
 import photoBlog from '~/graphql/types/photoBlog';
 import project from '~/graphql/types/project';
 import resume from '~/graphql/types/resume';
 import skills from '~/graphql/types/skill';
-import twitter from '~/graphql/types/twitter';
+import social from '~/graphql/types/social';
 import getFirstN from '~/graphql/utils/getFirstN';
 
 const me = new GraphQLObjectType({
@@ -25,21 +24,6 @@ const me = new GraphQLObjectType({
       type: GraphQLString,
       description: 'A photo of me',
       resolve: () => info.photo,
-    },
-    linkedin: {
-      type: new GraphQLObjectType({
-        name: 'Linkedin',
-        description: 'My Linkedin Info',
-        fields: {
-          url: {
-            type: GraphQLString,
-            description: 'My LinkedIn URL',
-            resolve: ({ url }: { url: string }) => url,
-          },
-        },
-      }),
-      description: 'My LinkedIn Info',
-      resolve: () => ({ url: info.linkedin }),
     },
     email: {
       type: GraphQLString,
@@ -83,27 +67,72 @@ const me = new GraphQLObjectType({
       description: 'Possible Relevant Skills',
       resolve: () => info.skills,
     },
-    twitter: {
-      type: twitter,
-      description: 'My Twitter Info',
-      deprecationReason: 'No longer using twitter, use `social` instead',
-      resolve: () => ({ url: info.twitter }),
-    },
-    social: {
-      type: GraphQLString,
-      description: 'My public social account',
-      resolve: () => info.social,
-    },
+
     github: {
-      type: github,
-      description: 'My Github Info',
-      deprecationReason: "I'm moving off of GitHub, check `git` instead",
+      type: new GraphQLObjectType({
+        name: 'GitHub',
+        description: 'My GitHub Info',
+        fields: {
+          url: {
+            type: GraphQLString,
+            description: 'My GitHub URL',
+            resolve: ({ url }: { url: string }) => url,
+          },
+        },
+      }),
+      description: 'My GitHub Info',
       resolve: () => ({ url: info.github }),
     },
+
+    linkedin: {
+      type: new GraphQLObjectType({
+        name: 'Linkedin',
+        description: 'My Linkedin Info',
+        fields: {
+          url: {
+            type: GraphQLString,
+            description: 'My LinkedIn URL',
+            resolve: ({ url }: { url: string }) => url,
+          },
+        },
+      }),
+      description: 'My LinkedIn Info',
+      resolve: () => ({ url: info.linkedin }),
+    },
+    twitter: {
+      type: new GraphQLObjectType({
+        name: 'Twitter',
+        description: 'My Twitter Info',
+        fields: {
+          url: {
+            type: GraphQLString,
+            description: 'My Twitter URL',
+            resolve: ({ url }: { url: string }) => url,
+          },
+        },
+      }),
+      description: 'My Twitter Info',
+      resolve: () => ({ url: info.twitter }),
+    },
     git: {
-      type: GraphQLString,
+      type: new GraphQLObjectType({
+        name: 'Git',
+        description: 'My Git Info',
+        fields: {
+          url: {
+            type: GraphQLString,
+            description: 'My Git URL',
+            resolve: ({ url }: { url: string }) => url,
+          },
+        },
+      }),
       description: 'My Git Info',
-      resolve: () => info.git,
+      resolve: () => ({ url: info.git }),
+    },
+    social: {
+      type: social,
+      description: 'My public social account',
+      resolve: () => ({ url: info.social }),
     },
     lastfm: {
       type: lastFM,
